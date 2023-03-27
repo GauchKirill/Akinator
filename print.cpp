@@ -23,7 +23,7 @@ void print_node_to_file(const node* now_node, size_t num_layer, FILE* tree_file)
 	}
 }
 
-void print_definition(const char* name, stack* name_stk, stack* answer_stk)
+void print_definition(Elem_t name, stack* name_stk, stack* answer_stk)
 {
 	printf("\"%s\" это", name);
 

@@ -46,7 +46,7 @@ int make_stacks(Elem_t name, tree* tr, stack** name_stk, stack** answer_stk)
 	return find_word;
 }
 
-int find_def(node* now_node, stack* stk_of_name, stack* stk_of_answer, const char* name)
+int find_def(node* now_node, stack* stk_of_name, stack* stk_of_answer, Elem_t name)
 {
 	if (left_node(now_node) && right_node(now_node))
 	{

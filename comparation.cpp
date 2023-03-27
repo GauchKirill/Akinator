@@ -1,6 +1,6 @@
 #include "comparation.h"
-#include "definition.h"
 #include "print.h"
+#include "definition.h"
 #include "Stack.h"
 #include <string.h>
 

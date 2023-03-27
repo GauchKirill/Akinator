@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+const char* Elem_out = "%p";
+
 tree* tree_ctor(const char* name_of_tree, const char* name_of_func, const char* name_of_file, size_t num_str)
 {
 	tree* tr   = (tree*) calloc(1, sizeof(tree));
@@ -44,15 +46,19 @@ node* make_node (Elem_t data_of_node, node* left_ptr, node* right_ptr)
 	return new_node;
 }
 
-char* make_data(Elem_t data_of_node)
+Elem_t make_data(Elem_t data)
 {
-	char* ptr_on_data = (char*) calloc(max_lenght_data, sizeof(char));
-	strncpy(ptr_on_data, data_of_node, max_lenght_data);
-	return ptr_on_data;
+	Elem_t copy_data = (Elem_t) calloc(max_lenght_data + 1, sizeof(char));
+	if (copy_data)
+		strncpy(copy_data, data, max_lenght_data);
+
+	return copy_data;
 }
 
 void tree_dtor(tree* tr)
 {
+	if (!tr)
+		return;
 	tr->info.name_tree = tr->info.name_file = tr->info.name_func = (const char*) TREE_POISON_NAME;
 	tr->info.num_str  = TREE_POISON_STR;
 	node_dtor(tr->root);
@@ -61,11 +67,10 @@ void tree_dtor(tree* tr)
 
 void node_dtor(node* now_node)
 {
-	if (now_node)
-	{
-		node_dtor(left_node(now_node));
-		node_dtor(right_node(now_node));
-		free(now_node);
-	}
+	if (!now_node)
+		return;
+	node_dtor(left_node(now_node));
+	node_dtor(right_node(now_node));
+	free(now_node);
 }
 

@@ -29,7 +29,7 @@ void ask_quation(tree* tr, node* now_node)
 {
 	if (left_node(now_node) && right_node(now_node))
 	{
-		printf("Это %s?\n", node_data(now_node));
+		printf("Это \"%s\"?\n", node_data(now_node));
 
 		if (get_answer())
 			ask_quation(tr, left_node(now_node));
@@ -37,7 +37,7 @@ void ask_quation(tree* tr, node* now_node)
 			ask_quation(tr, right_node(now_node));	
 	} else
 	{
-		printf("Наверное это \"%s\"?\n", node_data(now_node));
+		printf("Наверное это %s?\n", node_data(now_node));
 
 		if (get_answer())
 			printf ("Я угадал, я молодец!\n");
@@ -65,7 +65,7 @@ void new_object(tree* tr, node* old_node)
 	printf("Кто/что это был(a/о)?\n");
 	char answer[max_lenght_data] = "";
 	fgets(answer, max_lenght_data, stdin);
-
+	answer[strlen(answer) - 1] = '\0';
 	stack* stk_of_name   = nullptr;
 	stack* stk_of_answer = nullptr;
 	if (make_stacks(answer, tr, &stk_of_name, &stk_of_answer) == INSIDE_TREE)
@@ -82,13 +82,4 @@ void new_object(tree* tr, node* old_node)
 	left_node (old_node) = make_node(answer,              nullptr, nullptr);
 	right_node(old_node) = make_node(node_data(old_node), nullptr, nullptr);
 	strncpy(node_data(old_node), difference, max_lenght_data);
-}
-
-Elem_t make_data(Elem_t data)
-{
-	Elem_t copy_data = (Elem_t) calloc(max_lenght_data + 1, sizeof(char));
-	if (copy_data)
-		strncpy(copy_data, data, max_lenght_data);
-
-	return copy_data;
 }

@@ -1,0 +1,10 @@
+digraph G{
+	rankdir=TB;
+	node[shape="rectangle",fontsize=14];
+	edge[arrowhead="open"];
+	V0[label="съедобное"];
+	V0->V1[label="yes"];
+	V1[label="ананас"];
+	V0->V2[label="no"];
+	V2[label="собака"];
+}

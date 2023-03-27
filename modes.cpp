@@ -9,7 +9,7 @@
 		if (need_tree)																					\
 			tr = read_tree_from_text();																	\
 		function;																						\
-		tree_dtor(tr);																					\
+		tree_dtor(tr);                                                                                  \
 	}																									\
 	else
 

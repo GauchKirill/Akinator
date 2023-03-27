@@ -9,7 +9,7 @@ const size_t max_lenght_name_file = 20;
 const size_t max_lenght_answer    = 4;
 
 typedef char* Elem_t;
-const char* Elem_out = "%p";
+extern const char* Elem_out;
 
 typedef struct
 {

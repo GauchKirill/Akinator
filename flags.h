@@ -1,0 +1,5 @@
+define_mod("-a", "--akinator", 		"launches the akinator program", 	akinator(tr),   	11, 1)
+define_mod("-d", "--definition", 	"defines a word", 					definition(tr), 	13, 1)
+define_mod("-c", "--comparation", 	"compares the definition of words", comparation(tr), 	14, 1)
+define_mod("-D", "--dump", 			"builds a tree graph", 				dump(tr),			7,  1)
+define_mod("-h", "--help",			"prints out possible flags", 		printf_help(),		7,  0) 
