@@ -64,6 +64,7 @@ void new_object(tree* tr, node* old_node)
 {
 	printf("Кто/что это был(a/о)?\n");
 	char answer[max_lenght_data] = "";
+	getchar();
 	fgets(answer, max_lenght_data, stdin);
 	answer[strlen(answer) - 1] = '\0';
 	stack* stk_of_name   = nullptr;
@@ -77,8 +78,8 @@ void new_object(tree* tr, node* old_node)
 
 	printf("Чем \"%s\" отличается от \"%s\"?\n Он(а/о) ...\n", answer, node_data(old_node));
 	char difference[max_lenght_data] = "";
-	scanf("%s", difference);
-
+	fgets(difference, max_lenght_data, stdin);
+	difference[strlen(difference) - 1] = '\0';
 	left_node (old_node) = make_node(answer,              nullptr, nullptr);
 	right_node(old_node) = make_node(node_data(old_node), nullptr, nullptr);
 	strncpy(node_data(old_node), difference, max_lenght_data);

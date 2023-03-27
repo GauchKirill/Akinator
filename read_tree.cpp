@@ -11,6 +11,7 @@ tree* read_tree_from_text()
 	printf ("Введите название файла с деревом или \"-\", если хотите продолжить с системным деревом\n");
 	char name_file[max_lenght_name_file] = "";
 	scanf("%s", name_file);
+	getchar();
 	if (strncmp(name_file, "-", max_lenght_name_file) == 0)
 	{
 		tree* tr = TreeCtor(tr);
@@ -22,24 +23,22 @@ tree* read_tree_from_text()
 		return tr;
 
 	} else
-	{
-		tree* tr = tree_from_file(name_file);
-		if (!tr)
-			printf("Has not memory for tree\n");
-		return tr;
-	}
+		return tree_from_file(name_file);
 }
 
 tree* tree_from_file(const char* name_file)
 {
 	tree* tr = (tree*) calloc(1, sizeof(tree));
 	if (!tr)
+	{
+		printf("Has not memory for tree\n");
 		return nullptr;
+	}
 
 	const char* buf = get_buf(name_file);
 	if (!buf)
 		return nullptr;
-	tr->root = parse_block(tr->root, &buf);
+	tr->root = parse_buf(tr->root, &buf);
 	if (!tr->root)
 		return nullptr;
 	return tr;
