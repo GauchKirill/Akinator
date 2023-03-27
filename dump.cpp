@@ -6,9 +6,10 @@ void dump(tree* tr)
 {
 	if (!tr) return;
 	char name_dump_file[max_lenght_name_file] = {0};
-	printf ("\nВведите название файла для диагностики\n");
+	printf ("\nВведите название файла для диагностики с расширением .dot или введите \"-\" чтобы пропустить шаг\n");
 	scanf ("%s", name_dump_file);
-
+	if (strncmp(name_dump_file, "-", 2) == 0)
+		return;
 	FILE* dump_file = fopen(name_dump_file, "w");
 	if (!dump_file)
 	{

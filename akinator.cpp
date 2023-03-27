@@ -51,7 +51,7 @@ int get_answer(void)
 	char answer[max_lenght_answer] = "";
 	do
 	{
-		printf("Введите \"%s\"" (да) или \"%s\" (нет)?\n", YES, NO);
+		printf("Введите \"%s\" (да) или \"%s\" (нет)?\n", YES, NO);
 		scanf("%s", answer);
 	}
 	while (strncmp(answer, YES, max_lenght_answer) != 0 &&
@@ -60,7 +60,7 @@ int get_answer(void)
 	return strncmp(answer, NO, max_lenght_answer);
 }
 
-void new_object(tree* tr, node* old_node)
+void new_object(tree* tr, node* 	old_node)
 {
 	printf("Кто/что это был(a/о)?\n");
 	char answer[max_lenght_data] = "";
