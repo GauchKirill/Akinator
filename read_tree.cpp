@@ -92,10 +92,10 @@ node* parse_buf(node* now_node, const char** buf)
 
 node* parse_block(node* now_node, const char** buf)
 {
-	int cnt_read = 0;
 	char data[max_lenght_data] = "";
-	sscanf(*buf, "%s%n", data, &cnt_read);
-	(*buf) += cnt_read;
+	int length = strpbrk(*buf, "{}\n") - *buf;
+	strncpy(data, *buf, length);
+	(*buf) += length;
 	now_node = make_node(data, nullptr, nullptr);
 
 	left_node(now_node) = parse_buf(left_node(now_node), buf);

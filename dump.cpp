@@ -1,6 +1,6 @@
 #include "dump.h"
-
 #include "print.h"
+#include <string.h>
 
 void dump(tree* tr)
 {
@@ -59,16 +59,19 @@ void dump_note(node* top, int* num_node, FILE* dump_file)
 void save_tree(const tree* tr)
 {
 	if (!tr) return;
-	printf("Куда записать получившееся дерево?\n");
-	char name_tree_file[max_lenght_name_file]  = {0};
-	scanf("%s", name_tree_file);
+	printf("Введите имя файла, куда записать получившееся дерево или \"-\", чтобы пропустить шаг?\n");
+	char name_file[max_lenght_name_file]  = "";
+	scanf("%s", name_file);
+	if (strncmp(name_file, "-", 2) == 0)
+		return;
 
-	FILE* tree_file = fopen(name_tree_file, "w");
+	FILE* tree_file = fopen(name_file, "w");
 	if (!tree_file)
 	{
-		printf("Cann't open file \"%s\"\n", name_tree_file);
+		printf("Cann't open file \"%s\"\n", name_file);
 		return;
 	}
 
 	print_node_to_file(tr->root, 0, tree_file);
+	fclose(tree_file);
 }

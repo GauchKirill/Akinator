@@ -29,7 +29,7 @@ void ask_quation(tree* tr, node* now_node)
 {
 	if (left_node(now_node) && right_node(now_node))
 	{
-		printf("Это \"%s\"?\n", node_data(now_node));
+		printf("Это %s?\n", node_data(now_node));
 
 		if (get_answer())
 			ask_quation(tr, left_node(now_node));
@@ -51,7 +51,7 @@ int get_answer(void)
 	char answer[max_lenght_answer] = "";
 	do
 	{
-		printf("Введите \"%s\" (да) или \"%s\" (нет)?\n", YES, NO);
+		printf("Введите \"%s\"" (да) или \"%s\" (нет)?\n", YES, NO);
 		scanf("%s", answer);
 	}
 	while (strncmp(answer, YES, max_lenght_answer) != 0 &&
