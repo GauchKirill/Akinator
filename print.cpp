@@ -15,7 +15,7 @@ void print_node_to_file(const node* now_node, size_t num_layer, FILE* tree_file)
 	{
 		print_tabs(num_layer);
 		fprintf(tree_file,
-			"{ %s\n", node_data(now_node));
+			"{ %s \n", node_data(now_node));
 		print_node_to_file(left_node(now_node),  num_layer+1, tree_file);
 		print_node_to_file(right_node(now_node), num_layer+1, tree_file);
 		print_tabs(num_layer);

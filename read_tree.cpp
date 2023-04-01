@@ -94,7 +94,8 @@ node* parse_block(node* now_node, const char** buf)
 {
 	char data[max_lenght_data] = "";
 	int length = strpbrk(*buf, "{}\n") - *buf;
-	strncpy(data, *buf, length);
+	strncpy(data, *buf + 1, length);
+	data[length - 2] = '\0';
 	(*buf) += length;
 	now_node = make_node(data, nullptr, nullptr);
 

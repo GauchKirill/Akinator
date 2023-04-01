@@ -16,8 +16,11 @@ void definition(tree* tr)
 	while (true)
 	{
 		char name[max_lenght_data] = "";
-		printf("Введите слово, которому дать определение:\n");
+		printf("Введите слово, которому дать определение или \"-\" для выхода:\n");
 		fgets(name, max_lenght_data, stdin);
+		name[strlen(name) - 1] = '\0';
+		if (strncmp(name, "-", 2) == 0)
+			return;
 		stack* answer_stk = {0};
 		stack* name_stk   = {0};
 
@@ -26,7 +29,8 @@ void definition(tree* tr)
 			print_definition(name, name_stk, answer_stk);
 
 			printf("Хотите продолжить?\n");
-			if (get_answer() == 0) break;		
+			if (get_answer() == 0) break;
+			getchar();	
 		} else
 			printf("Слово \"%s\" не найдено в дереве\n", name);
 	}

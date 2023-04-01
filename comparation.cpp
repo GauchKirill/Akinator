@@ -14,12 +14,14 @@ void comparation(tree* tr)
 	char name_1[max_lenght_data] = "";
 	printf ("Введите первое слово в сравнении\n");
 	fgets(name_1, max_lenght_data, stdin);
+	name_1[strlen(name_1) - 1] = '\0';
 	stack* answer_stk_1 = nullptr;
 	stack* name_stk_1   = nullptr;
 
 	char name_2[max_lenght_data] = "";
 	printf ("Введите слово с которым сравнивать\n");
 	fgets(name_2, max_lenght_data, stdin);
+	name_2[strlen(name_2) - 1] = '\0';
 	stack* answer_stk_2 = nullptr;
 	stack* name_stk_2   = nullptr;
 
