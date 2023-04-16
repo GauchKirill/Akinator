@@ -16,7 +16,7 @@
 
 #endif
 
-extern Elem_t      POISON;
+extern elem_t      POISON;
 extern const int   min_size_data;
 
 #ifdef DUMPLING
@@ -72,7 +72,7 @@ typedef struct
 
     #endif
 
-    Elem_t* data;
+    elem_t* data;
     size_t  size;
     size_t  capacity;
 
@@ -84,9 +84,9 @@ typedef struct
     #endif
 } stack;
 
-unsigned StackPush( stack* stk, Elem_t x);
+unsigned StackPush( stack* stk, elem_t x);
 
-unsigned StackPop( stack* stk, Elem_t* x);
+unsigned StackPop( stack* stk, elem_t* x);
 
 unsigned Stack_Ctor( stack** stk, size_t n, const char* name_stk, const char* name_of_file, const char* name_of_func, int line);
 

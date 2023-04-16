@@ -11,7 +11,7 @@ enum definition_state
 };
 
 void definition (tree* tr);
-int  make_stacks(Elem_t data, tree* tr, stack** name_stk, stack** answer_stk);
-int  find_def   (node* now_node, stack* stk_of_name, stack* stk_of_answer, Elem_t name);
+int  make_stacks(elem_t data, tree* tr, stack** name_stk, stack** answer_stk);
+int  find_def   (node* now_node, stack* stk_of_name, stack* stk_of_answer, elem_t name);
 
 #endif

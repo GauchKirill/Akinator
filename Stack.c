@@ -1,6 +1,6 @@
 #include "Stack.h"
 
-Elem_t       POISON        = nullptr;
+elem_t       POISON        = nullptr;
 const int    min_size_data = 4;
 const char*  log_file_name = (const char*) "log_file.txt";
 FILE*        log_stream    = nullptr;
@@ -11,7 +11,7 @@ const unsigned long long Canary        = 0xDEADF00D;
 
 #endif
 
-unsigned StackPush (stack* stk, Elem_t x)
+unsigned StackPush (stack* stk, elem_t x)
 {
     unsigned err = StackVerify( stk);
 
@@ -58,7 +58,7 @@ unsigned StackPush (stack* stk, Elem_t x)
     return err;
 }
 
-unsigned StackPop( stack* stk, Elem_t* x)
+unsigned StackPop( stack* stk, elem_t* x)
 {
     unsigned err = StackVerify( stk);
 
@@ -115,7 +115,7 @@ unsigned Stack_Ctor( stack** stk, size_t n, const char* name_stk, const char* na
 
     if( *stk != NULL)
     {
-        (*stk)->data = (Elem_t*) calloc( n, sizeof( Elem_t));
+        (*stk)->data = (elem_t*) calloc( n, sizeof( elem_t));
 
         if( (*stk)->data != NULL)
         {
@@ -160,7 +160,7 @@ unsigned StackDtor( stack* stk)
     if( err == STACK_OK)
     {
         free( stk->data);
-        stk->data     = (Elem_t*) POISON_DATA;
+        stk->data     = (elem_t*) POISON_DATA;
         stk->size     = POISON_SIZE;
         stk->capacity = POISON_CAPACITY;
 
@@ -189,7 +189,7 @@ unsigned StackVerify( stack* stk)
     } else
     {
 
-        if( stk->data == NULL || stk->data == (Elem_t*) POISON_DATA)
+        if( stk->data == NULL || stk->data == (elem_t*) POISON_DATA)
             err |= STACK_NULL_DATA;
         else
         {
@@ -241,7 +241,7 @@ unsigned StackResize( stack* stk, const int condition)
         else
             stk->capacity *= 2;
 
-        stk->data = (Elem_t*) realloc( stk->data, stk->capacity * sizeof( Elem_t)); //ffff
+        stk->data = (elem_t*) realloc( stk->data, stk->capacity * sizeof( elem_t)); //ffff
 
         if( stk->data == NULL)
         {
@@ -263,7 +263,7 @@ unsigned StackResize( stack* stk, const int condition)
         {
             stk->capacity /= 2;
 
-            stk->data = (Elem_t*) realloc( stk->data, stk->capacity * sizeof( Elem_t));
+            stk->data = (elem_t*) realloc( stk->data, stk->capacity * sizeof( elem_t));
         }
 
         if( stk->data == NULL)
@@ -323,7 +323,7 @@ unsigned Printf_stk( stack* stk)
         else
             printf( "         [%d] = ", i);
 
-        printf( Elem_out, stk->data[i]);
+        printf( elem_out, stk->data[i]);
         printf( "\n");
     }
 
@@ -414,7 +414,7 @@ void Stack_Dump( stack* stk, const unsigned err, const char* name_wrong_file, co
                     else
                         fprintf( log_stream, " [%d] = ", i);
 
-                    fprintf( log_stream, Elem_out, stk->data[i]);
+                    fprintf( log_stream, elem_out, stk->data[i]);
                     fprintf( log_stream, "\n");
                 }
 
@@ -440,7 +440,7 @@ void Stack_Dump( stack* stk, const unsigned err, const char* name_wrong_file, co
                     else
                         fprintf( log_stream, " [%d] = ", i);
 
-                    fprintf( log_stream, Elem_out, stk->data[i]);
+                    fprintf( log_stream, elem_out, stk->data[i]);
                     fprintf( log_stream, "\n");
                 }
 
@@ -464,7 +464,7 @@ void Stack_Dump( stack* stk, const unsigned err, const char* name_wrong_file, co
                     else
                         fprintf( log_stream, " [%d] = ", i);
 
-                    fprintf( log_stream, Elem_out, stk->data[i]);
+                    fprintf( log_stream, elem_out, stk->data[i]);
                     fprintf( log_stream, "\n");
                 }
 
@@ -485,7 +485,7 @@ unsigned long long Stack_hash_FAQ6( const stack* stk)
 
     char* ptr = (char*) stk->data; 
 
-    for (int i = 0; i < stk->capacity * sizeof( Elem_t); i++)
+    for (int i = 0; i < stk->capacity * sizeof( elem_t); i++)
     {
         hash_data += (unsigned char) (*(ptr+i));
         hash_data += (hash_data << 10);

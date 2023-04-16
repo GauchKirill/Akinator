@@ -3,8 +3,8 @@
 #include "print.h"
 #include <string.h>
 
-extern Elem_t YES;
-extern Elem_t NO;
+extern elem_t YES;
+extern elem_t NO;
     
 void definition(tree* tr)
 {
@@ -36,7 +36,7 @@ void definition(tree* tr)
     }
 }
 
-int make_stacks(Elem_t name, tree* tr, stack** name_stk, stack** answer_stk)
+int make_stacks(elem_t name, tree* tr, stack** name_stk, stack** answer_stk)
 {
     if (!tr) return TREE_INVALID_PTR;
     stack* stk_of_name = {0};
@@ -50,7 +50,7 @@ int make_stacks(Elem_t name, tree* tr, stack** name_stk, stack** answer_stk)
     return find_word;
 }
 
-int find_def(node* now_node, stack* stk_of_name, stack* stk_of_answer, Elem_t name)
+int find_def(node* now_node, stack* stk_of_name, stack* stk_of_answer, elem_t name)
 {
     if (left_node(now_node) && right_node(now_node))
     {

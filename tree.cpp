@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char* Elem_out = "%p";
+const char* elem_out = "%p";
 
 tree* tree_ctor(const char* name_of_tree, const char* name_of_func, const char* name_of_file, size_t num_str)
 {
     tree* tr   = (tree*) calloc(1, sizeof(tree));
-    node* start_root = make_node((Elem_t) "", nullptr, nullptr); 
+    node* start_root = make_node((elem_t) "", nullptr, nullptr); 
     
     if (!tr || !start_root)
         return nullptr;
@@ -22,7 +22,7 @@ tree* tree_ctor(const char* name_of_tree, const char* name_of_func, const char* 
     return tr;
 }
 
-node* make_node (Elem_t data_of_node, node* left_ptr, node* right_ptr)
+node* make_node (elem_t data_of_node, node* left_ptr, node* right_ptr)
 {
     node* new_node  = (node*) calloc(1, sizeof(node));
     if (!new_node)
@@ -35,7 +35,7 @@ node* make_node (Elem_t data_of_node, node* left_ptr, node* right_ptr)
     if (!node_data(new_node))
     {
         printf("Has not memory for \"");
-        printf(Elem_out, data_of_node);
+        printf(elem_out, data_of_node);
         printf("\"\n");
         return nullptr;
     }
@@ -46,9 +46,9 @@ node* make_node (Elem_t data_of_node, node* left_ptr, node* right_ptr)
     return new_node;
 }
 
-Elem_t make_data(Elem_t data)
+elem_t make_data(elem_t data)
 {
-    Elem_t copy_data = (Elem_t) calloc(max_lenght_data + 1, sizeof(char));
+    elem_t copy_data = (elem_t) calloc(max_lenght_data + 1, sizeof(char));
     if (copy_data)
         strncpy(copy_data, data, max_lenght_data);
 

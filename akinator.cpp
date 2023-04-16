@@ -4,8 +4,8 @@
 #include "print.h"
 #include <string.h>
 
-Elem_t YES = (Elem_t) "y";
-Elem_t NO  = (Elem_t) "n";
+elem_t YES = (elem_t) "y";
+elem_t NO  = (elem_t) "n";
 
 void akinator(tree* tr)
 {

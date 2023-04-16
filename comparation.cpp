@@ -4,8 +4,8 @@
 #include "Stack.h"
 #include <string.h>
 
-extern Elem_t YES;
-extern Elem_t NO;
+extern elem_t YES;
+extern elem_t NO;
 
 void comparation(tree* tr)
 {
