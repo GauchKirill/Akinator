@@ -3,6 +3,6 @@
 
 int main(int argc, const char** argv)
 {
-	modes(argc, argv);
-	return 0;
+    modes(argc, argv);
+    return 0;
 }

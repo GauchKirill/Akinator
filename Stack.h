@@ -12,7 +12,7 @@
 
 #ifdef DUMPLING
 
-	#define StackDump(stk, err) Stack_Dump((stk), (err), __FILE__, __PRETTY_FUNCTION__, __LINE__)
+    #define StackDump(stk, err) Stack_Dump((stk), (err), __FILE__, __PRETTY_FUNCTION__, __LINE__)
 
 #endif
 
@@ -21,67 +21,67 @@ extern const int   min_size_data;
 
 #ifdef DUMPLING
 
-	extern const unsigned long long Canary;
+    extern const unsigned long long Canary;
 
 #endif
 
 typedef enum _Poisons {
-	POISON_SIZE     = -1,
-	POISON_CAPACITY = -1,
-	POISON_DATA     = -1,
-	POISON_NAME     =  0,
-	POISON_LINE     = -1,
-	POISON_HASH     = -1,
-	POISON_CANARY   = -1,
+    POISON_SIZE     = -1,
+    POISON_CAPACITY = -1,
+    POISON_DATA     = -1,
+    POISON_NAME     =  0,
+    POISON_LINE     = -1,
+    POISON_HASH     = -1,
+    POISON_CANARY   = -1,
 } Poisons;
 
 typedef enum _errors {
-	STACK_OK         = 0x0,
-	STACK_NULLPTR    = 0x1,
-	STACK_NULL_DATA  = 0x2,
-	INVALID_SIZE     = 0x4,
-	INVALID_CAPACITY = 0x8,
-	STACK_EMPTY      = 0x10,
-	HAS_NOT_MEMORY   = 0x20,
-	INVALID_DATA     = 0x40,
-	STACK_IS_ATACKED = 0x80,
+    STACK_OK         = 0x0,
+    STACK_NULLPTR    = 0x1,
+    STACK_NULL_DATA  = 0x2,
+    INVALID_SIZE     = 0x4,
+    INVALID_CAPACITY = 0x8,
+    STACK_EMPTY      = 0x10,
+    HAS_NOT_MEMORY   = 0x20,
+    INVALID_DATA     = 0x40,
+    STACK_IS_ATACKED = 0x80,
 } errors;
 
 typedef enum _Conditions {
-	STACK_UP   = 1,
-	STACK_DOWN = 0,
+    STACK_UP   = 1,
+    STACK_DOWN = 0,
 } Conditions;
 
 #ifdef DUMPLING
 
-	typedef struct 
-	{
-		const char* name;
-		const char* func;
-		const char* file;
-		int         line;
-	} stk_info;
+    typedef struct 
+    {
+        const char* name;
+        const char* func;
+        const char* file;
+        int         line;
+    } stk_info;
 
 #endif
 
 typedef struct 
 {
-	#ifdef DUMPLING
+    #ifdef DUMPLING
 
-		unsigned canary;
+        unsigned canary;
 
-	#endif
+    #endif
 
-	Elem_t* data;
-	size_t  size;
-	size_t  capacity;
+    Elem_t* data;
+    size_t  size;
+    size_t  capacity;
 
-	#ifdef DUMPLING
+    #ifdef DUMPLING
 
-		stk_info           info;
-		unsigned long long hash;
+        stk_info           info;
+        unsigned long long hash;
 
-	#endif
+    #endif
 } stack;
 
 unsigned StackPush( stack* stk, Elem_t x);
