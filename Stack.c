@@ -1,4 +1,8 @@
 #include "Stack.h"
+#include <math.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <stdio.h>
 
 elem_t       POISON        = nullptr;
 const int    min_size_data = 4;

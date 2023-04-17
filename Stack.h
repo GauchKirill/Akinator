@@ -1,10 +1,6 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include <stdio.h>
-#include <math.h>
-#include <sys/stat.h>
-#include <sys/types.h>
 #include "tree.h"
 
 #define DUMPLING
@@ -84,22 +80,14 @@ typedef struct
     #endif
 } stack;
 
-unsigned StackPush( stack* stk, elem_t x);
-
-unsigned StackPop( stack* stk, elem_t* x);
-
-unsigned Stack_Ctor( stack** stk, size_t n, const char* name_stk, const char* name_of_file, const char* name_of_func, int line);
-
-unsigned StackDtor( stack* stk);
-
-unsigned StackVerify( stack* stk);
-
-unsigned StackResize( stack* stk, const int condition);
-
-void Stack_Dump( stack* stk, const unsigned err, const char* name_wrong_file, const char* name_wrong_func, int line);
-
-unsigned long long Stack_hash_FAQ6( const stack* stk);
-
-unsigned Printf_stk( stack* stk);
+unsigned StackPush (stack* stk, elem_t x);
+unsigned StackPop (stack* stk, elem_t* x);
+unsigned Stack_Ctor (stack** stk, size_t n, const char* name_stk, const char* name_of_file, const char* name_of_func, int line);
+unsigned StackDtor (stack* stk);
+unsigned StackVerify (stack* stk);
+unsigned StackResize (stack* stk, const int condition);
+void Stack_Dump (stack* stk, const unsigned err, const char* name_wrong_file, const char* name_wrong_func, int line);
+unsigned long long Stack_hash_FAQ6 (const stack* stk);
+unsigned Printf_stk (stack* stk);
 
 #endif

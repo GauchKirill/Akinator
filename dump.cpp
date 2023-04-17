@@ -1,6 +1,7 @@
 #include "dump.h"
 #include "print.h"
 #include <string.h>
+#include <stdlib.h>
 
 void dump(tree* tr)
 {
