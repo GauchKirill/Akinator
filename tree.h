@@ -19,11 +19,11 @@ typedef struct
     size_t num_str;        //where tree made
 } tree_info; 
 
-typedef struct _node
+typedef struct node
 {
     elem_t        data;
-    struct _node* left;
-    struct _node* right;
+    struct node* left;
+    struct node* right;
 } node;
 
 typedef struct
