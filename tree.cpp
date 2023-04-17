@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-const char* elem_out = "%p";
-
 tree* tree_ctor(const char* name_of_tree, const char* name_of_func, const char* name_of_file, size_t num_str)
 {
     tree* tr   = (tree*) calloc(1, sizeof(tree));
