@@ -24,6 +24,7 @@ typedef struct node
     elem_t        data;
     struct node* left;
     struct node* right;
+    bool is_visited = 0; // for node_dtor
 } node;
 
 typedef struct

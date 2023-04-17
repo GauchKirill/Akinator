@@ -68,8 +68,17 @@ void node_dtor(node* now_node)
 {
     if (!now_node)
         return;
-    node_dtor(left_node(now_node));
-    node_dtor(right_node(now_node));
-    free(now_node);
+    if (now_node->is_visited)
+    {
+        free(now_node);
+        return;
+    }
+    else
+    {
+        now_node->is_visited = 1;
+        node_dtor(left_node(now_node));
+        node_dtor(right_node(now_node));
+        free(now_node);    
+    }
 }
 
