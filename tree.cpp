@@ -49,9 +49,9 @@ node* make_node (elem_t data_of_node, node* left_ptr, node* right_ptr)
 
 elem_t make_data(elem_t data)
 {
-    elem_t copy_data = (elem_t) calloc(max_lenght_data + 1, sizeof(char));
+    elem_t copy_data = (elem_t) calloc(MAX_LENGHT_DATA + 1, sizeof(char));
     if (copy_data)
-        strncpy(copy_data, data, max_lenght_data);
+        strncpy(copy_data, data, MAX_LENGHT_DATA);
 
     return copy_data;
 }

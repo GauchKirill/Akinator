@@ -48,24 +48,24 @@ void ask_quation(tree* tr, node* now_node)
 
 int get_answer(void)
 {
-    char answer[max_lenght_answer] = "";
+    char answer[MAX_LENGHT_ANSWER] = "";
     do
     {
         printf("Введите \"%s\" (да) или \"%s\" (нет)?\n", YES, NO);
         scanf("%s", answer);
     }
-    while (strncmp(answer, YES, max_lenght_answer) != 0 &&
-           strncmp(answer, NO,  max_lenght_answer) != 0);
+    while (strncmp(answer, YES, MAX_LENGHT_ANSWER) != 0 &&
+           strncmp(answer, NO,  MAX_LENGHT_ANSWER) != 0);
 
-    return strncmp(answer, NO, max_lenght_answer);
+    return strncmp(answer, NO, MAX_LENGHT_ANSWER);
 }
 
 void new_object(tree* tr, node*     old_node)
 {
     printf("Кто/что это был(a/о)?\n");
-    char answer[max_lenght_data] = "";
+    char answer[MAX_LENGHT_DATA] = "";
     getchar();
-    fgets(answer, max_lenght_data, stdin);
+    fgets(answer, MAX_LENGHT_DATA, stdin);
     answer[strlen(answer) - 1] = '\0';
     stack* stk_of_name   = nullptr;
     stack* stk_of_answer = nullptr;
@@ -77,10 +77,10 @@ void new_object(tree* tr, node*     old_node)
     }
 
     printf("Чем \"%s\" отличается от \"%s\"?\n Он(а/о) ...\n", answer, node_data(old_node));
-    char difference[max_lenght_data] = "";
-    fgets(difference, max_lenght_data, stdin);
+    char difference[MAX_LENGHT_DATA] = "";
+    fgets(difference, MAX_LENGHT_DATA, stdin);
     difference[strlen(difference) - 1] = '\0';
     left_node (old_node) = make_node(answer,              nullptr, nullptr);
     right_node(old_node) = make_node(node_data(old_node), nullptr, nullptr);
-    strncpy(node_data(old_node), difference, max_lenght_data);
+    strncpy(node_data(old_node), difference, MAX_LENGHT_DATA);
 }

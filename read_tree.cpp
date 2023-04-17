@@ -9,10 +9,10 @@
 tree* read_tree_from_text()
 {
     printf ("Введите название файла с деревом или \"-\", если хотите продолжить с системным деревом\n");
-    char name_file[max_lenght_name_file] = "";
+    char name_file[MAX_LENGHT_NAME_FILE] = "";
     scanf("%s", name_file);
     getchar();
-    if (strncmp(name_file, "-", max_lenght_name_file) == 0)
+    if (strncmp(name_file, "-", MAX_LENGHT_NAME_FILE) == 0)
     {
         tree* tr = TreeCtor(tr);
         if (!tr)
@@ -92,7 +92,7 @@ node* parse_buf(node* now_node, const char** buf)
 
 node* parse_block(node* now_node, const char** buf)
 {
-    char data[max_lenght_data] = "";
+    char data[MAX_LENGHT_DATA] = "";
     int length = strpbrk(*buf, "{}\n") - *buf;
     strncpy(data, *buf + 1, length);
     data[length - 2] = '\0';

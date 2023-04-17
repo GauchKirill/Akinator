@@ -4,9 +4,9 @@
 #include <stdint.h>
 #include <stdio.h>
 
-const size_t max_lenght_data      = 50;
-const size_t max_lenght_name_file = 20;
-const size_t max_lenght_answer    = 4;
+const size_t MAX_LENGHT_DATA      = 50;
+const size_t MAX_LENGHT_NAME_FILE = 20;
+const size_t MAX_LENGHT_ANSWER    = 4;
 
 typedef char* elem_t;
 extern const char* elem_out;

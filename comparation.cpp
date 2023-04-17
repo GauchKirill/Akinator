@@ -11,16 +11,16 @@ void comparation(tree* tr)
 {
     if (!tr) return;
 
-    char name_1[max_lenght_data] = "";
+    char name_1[MAX_LENGHT_DATA] = "";
     printf ("Введите первое слово в сравнении\n");
-    fgets(name_1, max_lenght_data, stdin);
+    fgets(name_1, MAX_LENGHT_DATA, stdin);
     name_1[strlen(name_1) - 1] = '\0';
     stack* answer_stk_1 = nullptr;
     stack* name_stk_1   = nullptr;
 
-    char name_2[max_lenght_data] = "";
+    char name_2[MAX_LENGHT_DATA] = "";
     printf ("Введите слово с которым сравнивать\n");
-    fgets(name_2, max_lenght_data, stdin);
+    fgets(name_2, MAX_LENGHT_DATA, stdin);
     name_2[strlen(name_2) - 1] = '\0';
     stack* answer_stk_2 = nullptr;
     stack* name_stk_2   = nullptr;
@@ -44,10 +44,10 @@ void comparation(tree* tr)
             StackPop (answer_stk_1, &answer_1);
             StackPop (answer_stk_2, &answer_2);
 
-            if  ((strncmp(definition_1, definition_2, max_lenght_data  ) == 0) &&
-                 (strncmp(answer_1,     answer_2,     max_lenght_answer) == 0))
+            if  ((strncmp(definition_1, definition_2, MAX_LENGHT_DATA  ) == 0) &&
+                 (strncmp(answer_1,     answer_2,     MAX_LENGHT_ANSWER) == 0))
             {
-                printf(" %s\"%s\"", (strncmp(answer_1, YES, max_lenght_answer) == 0) ? "" : "не ", definition_1);
+                printf(" %s\"%s\"", (strncmp(answer_1, YES, MAX_LENGHT_ANSWER) == 0) ? "" : "не ", definition_1);
                 if (name_stk_1->size > 0 && name_stk_2->size > 0)
                     printf(",");
             } else

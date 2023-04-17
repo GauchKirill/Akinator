@@ -6,7 +6,7 @@
 void dump(tree* tr)
 {
     if (!tr) return;
-    char name_dump_file[max_lenght_name_file] = {0};
+    char name_dump_file[MAX_LENGHT_NAME_FILE] = {0};
     printf ("\nВведите название файла для диагностики с расширением .dot или введите \"-\" чтобы пропустить шаг\n");
     scanf ("%s", name_dump_file);
     if (strncmp(name_dump_file, "-", 2) == 0)
@@ -62,7 +62,7 @@ void save_tree(const tree* tr)
 {
     if (!tr) return;
     printf("Введите имя файла, куда записать получившееся дерево или \"-\", чтобы пропустить шаг?\n");
-    char name_file[max_lenght_name_file]  = "";
+    char name_file[MAX_LENGHT_NAME_FILE]  = "";
     scanf("%s", name_file);
     if (strncmp(name_file, "-", 2) == 0)
         return;

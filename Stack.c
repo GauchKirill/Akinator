@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 elem_t       POISON        = nullptr;
-const int    min_size_data = 4;
+const int    MIN_SIZE_DATA = 4;
 const char*  log_file_name = (const char*) "log_file.txt";
 FILE*        log_stream    = nullptr;
 
@@ -110,8 +110,8 @@ unsigned StackPop( stack* stk, elem_t* x)
 
 unsigned Stack_Ctor( stack** stk, size_t n, const char* name_stk, const char* name_of_file, const char* name_of_func, const int line)
 {
-    if( n < min_size_data)
-        n = min_size_data;
+    if( n < MIN_SIZE_DATA)
+        n = MIN_SIZE_DATA;
 
     *stk = (stack*) calloc( 1, sizeof( **stk));
 
@@ -197,7 +197,7 @@ unsigned StackVerify( stack* stk)
             err |= STACK_NULL_DATA;
         else
         {
-            if( stk->capacity < min_size_data )
+            if( stk->capacity < MIN_SIZE_DATA )
                 err |= INVALID_CAPACITY;
 
             if( stk->size < 0 && stk->size >= stk->capacity && (err & INVALID_CAPACITY == 0))
@@ -240,8 +240,8 @@ unsigned StackResize( stack* stk, const int condition)
 
     if( condition == STACK_UP)
     {
-        if( stk->capacity < min_size_data)
-            stk->capacity = min_size_data;
+        if( stk->capacity < MIN_SIZE_DATA)
+            stk->capacity = MIN_SIZE_DATA;
         else
             stk->capacity *= 2;
 
@@ -263,7 +263,7 @@ unsigned StackResize( stack* stk, const int condition)
 
     if( condition == STACK_DOWN)
     {
-        if( stk->capacity >= 2*min_size_data)
+        if( stk->capacity >= 2*MIN_SIZE_DATA)
         {
             stk->capacity /= 2;
 

@@ -15,9 +15,9 @@ void definition(tree* tr)
     }
     while (true)
     {
-        char name[max_lenght_data] = "";
+        char name[MAX_LENGHT_DATA] = "";
         printf("Введите слово, которому дать определение или \"-\" для выхода:\n");
-        fgets(name, max_lenght_data, stdin);
+        fgets(name, MAX_LENGHT_DATA, stdin);
         name[strlen(name) - 1] = '\0';
         if (strncmp(name, "-", 2) == 0)
             return;
@@ -71,7 +71,7 @@ int find_def(node* now_node, stack* stk_of_name, stack* stk_of_answer, elem_t na
     }
     else
     {
-        if (strncmp(node_data(now_node), name, max_lenght_data) == 0)
+        if (strncmp(node_data(now_node), name, MAX_LENGHT_DATA) == 0)
             return INSIDE_TREE;
         else
             return NOT_INSIDE_TREE;

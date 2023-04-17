@@ -33,7 +33,7 @@ void print_definition(elem_t name, stack* name_stk, stack* answer_stk)
         char* answer     = nullptr; 
         StackPop (name_stk,   &definition);
         StackPop (answer_stk, &answer);
-        printf(" %s\"%s\"", (strncmp(answer, YES, max_lenght_answer) == 0) ? "" : "не ", definition);
+        printf(" %s\"%s\"", (strncmp(answer, YES, MAX_LENGHT_ANSWER) == 0) ? "" : "не ", definition);
         if (name_stk->size > 0)
             printf (",");
         else

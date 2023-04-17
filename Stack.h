@@ -13,7 +13,7 @@
 #endif
 
 extern elem_t      POISON;
-extern const int   min_size_data;
+extern const int   MIN_SIZE_DATA;
 
 #ifdef DUMPLING
 
