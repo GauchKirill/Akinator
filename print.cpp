@@ -1,4 +1,5 @@
 #include "print.h"
+#include "settings.h"
 #include <string.h>
 
 extern elem_t YES;

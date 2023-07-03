@@ -1,6 +1,7 @@
 #include "definition.h"
 #include "akinator.h"
 #include "print.h"
+#include "settings.h"
 #include <string.h>
 
 extern elem_t YES;

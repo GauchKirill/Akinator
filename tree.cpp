@@ -1,4 +1,5 @@
 #include "tree.h"
+#include "settings.h"
 
 #include <stdlib.h>
 #include <string.h>

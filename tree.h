@@ -3,7 +3,9 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include "settings.h"
+
+typedef char* elem_t;
+extern const char* elem_out;
 
 typedef struct
 {

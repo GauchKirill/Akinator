@@ -1,4 +1,5 @@
 #include "read_tree.h"
+#include "settings.h"
 
 #include <string.h>
 #include <ctype.h>

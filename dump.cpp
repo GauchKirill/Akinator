@@ -1,5 +1,6 @@
 #include "dump.h"
 #include "print.h"
+#include "settings.h"
 #include <string.h>
 #include <stdlib.h>
 

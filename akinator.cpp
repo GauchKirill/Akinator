@@ -2,6 +2,7 @@
 #include "definition.h"
 #include "dump.h"
 #include "print.h"
+#include "settings.h"
 #include <string.h>
 
 elem_t YES = (elem_t) "y";

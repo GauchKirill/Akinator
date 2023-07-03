@@ -2,6 +2,7 @@
 #include "print.h"
 #include "definition.h"
 #include "Stack.h"
+#include "settings.h"
 #include <string.h>
 
 extern elem_t YES;
