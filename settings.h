@@ -8,4 +8,5 @@ const size_t MAX_LENGHT_ANSWER    = 4;
 typedef char* elem_t;
 extern const char* elem_out;
 
+
 #endif

@@ -63,24 +63,25 @@ int get_answer(void)
 void new_object(tree* tr, node*     old_node)
 {
     printf("Кто/что это был(a/о)?\n");
-    char answer[MAX_LENGHT_DATA] = "";
+    char name[MAX_LENGHT_DATA] = "";
     getchar();
-    fgets(answer, MAX_LENGHT_DATA, stdin);
-    answer[strlen(answer) - 1] = '\0';
+    fgets(name, MAX_LENGHT_DATA, stdin);
+    name[strlen(name) - 1] = '\0';
     stack* stk_of_name   = nullptr;
     stack* stk_of_answer = nullptr;
-    if (make_stacks(answer, tr, &stk_of_name, &stk_of_answer) == INSIDE_TREE)
+
+    if (find_def(tr->root, stk_of_name, stk_of_answer, name) == INSIDE_TREE)
     {
         printf("Это слово уже есть в дереве\n");
-        print_definition(answer, stk_of_name, stk_of_answer);
+        print_definition(name, stk_of_name, stk_of_answer);
         return;
     }
 
-    printf("Чем \"%s\" отличается от \"%s\"?\n Он(а/о) ...\n", answer, node_data(old_node));
+    printf("Чем \"%s\" отличается от \"%s\"?\n Он(а/о) ...\n", name, node_data(old_node));
     char difference[MAX_LENGHT_DATA] = "";
     fgets(difference, MAX_LENGHT_DATA, stdin);
     difference[strlen(difference) - 1] = '\0';
-    left_node (old_node) = make_node(answer,              nullptr, nullptr);
-    right_node(old_node) = make_node(node_data(old_node), nullptr, nullptr);
+    left_node (old_node) = make_node(name,                  nullptr, nullptr);
+    right_node(old_node) = make_node(node_data(old_node),   nullptr, nullptr);
     strncpy(node_data(old_node), difference, MAX_LENGHT_DATA);
 }

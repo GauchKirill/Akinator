@@ -21,10 +21,10 @@ void definition(tree* tr)
         name[strlen(name) - 1] = '\0';
         if (strncmp(name, "-", 2) == 0)
             return;
-        stack* answer_stk = {0};
-        stack* name_stk   = {0};
+        stack* answer_stk = nullptr;
+        stack* name_stk   = nullptr;
 
-        if (make_stacks(name, tr, &name_stk, &answer_stk) == INSIDE_TREE)
+        if (find_def(tr->root, &name_stk, &answer_stk, name) == INSIDE_TREE)
         {
             print_definition(name, name_stk, answer_stk);
 
@@ -32,41 +32,30 @@ void definition(tree* tr)
             if (get_answer() == 0) break;
             getchar();  
         } else
-            printf("Слово \"%s\" не найдено в дереве\n", name);
+            printf("Слово \"%s\" не найдено в дереве.\n", name);
     }
 }
 
-int make_stacks(elem_t name, tree* tr, stack** name_stk, stack** answer_stk)
-{
-    if (!tr) return TREE_INVALID_PTR;
-    stack* stk_of_name = {0};
-    stack* stk_of_answer = {0};
-    StackCtor(&stk_of_name, 1);
-    StackCtor(&stk_of_answer, 1);
+#define find_in_child(name_child, push_word)                                                        \
+    if (find_def(name_child ## _node(now_node), stk_of_name, stk_of_answer, name) == INSIDE_TREE)   \
+    {                                                                                               \
+        StackPush(*stk_of_name, node_data(now_node));                                                \
+        StackPush(*stk_of_answer, push_word);                                                        \
+        return INSIDE_TREE;                                                                         \
+    } else                                                                               
 
-    int find_word = find_def(tr->root, stk_of_name, stk_of_answer, name);
-    *name_stk   = stk_of_name;
-    *answer_stk = stk_of_answer;
-    return find_word;
-}
-
-int find_def(node* now_node, stack* stk_of_name, stack* stk_of_answer, elem_t name)
+int find_def(node* now_node, stack** stk_of_name, stack** stk_of_answer, elem_t name)
 {
+    if (!stk_of_name || !stk_of_answer)
+        return STACK_NULLPTR;
+
+    StackCtor(stk_of_name,   1);
+    StackCtor(stk_of_answer, 1);
+
     if (left_node(now_node) && right_node(now_node))
     {
-        if (find_def(left_node(now_node), stk_of_name, stk_of_answer, name))
-        {
-            StackPush(stk_of_name,   node_data(now_node));
-            StackPush(stk_of_answer, YES);
-            return INSIDE_TREE;
-            
-        } else if (find_def(right_node(now_node), stk_of_name, stk_of_answer, name))
-        {
-            StackPush(stk_of_name,   node_data(now_node));
-            StackPush(stk_of_answer, NO);
-            return INSIDE_TREE;     
-
-        } else
+        find_in_child(left, YES)
+        find_in_child(right, NO)
             return NOT_INSIDE_TREE;
     }
     else
@@ -77,3 +66,5 @@ int find_def(node* now_node, stack* stk_of_name, stack* stk_of_answer, elem_t na
             return NOT_INSIDE_TREE;
     }
 }
+
+#undef find_in_child

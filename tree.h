@@ -15,10 +15,10 @@ typedef struct
 
 typedef struct node
 {
-    elem_t        data;
-    struct node* left;
-    struct node* right;
-    bool is_visited = 0; // for node_dtor
+    elem_t          data;
+    struct node*    left;
+    struct node*    right;
+    bool is_visited = false; // for node_dtor
 } node;
 
 typedef struct
@@ -40,11 +40,11 @@ enum tree_errors
     TREE_INVALID_PTR = 1<<1,
 };
 
-#define node_data(Node) (Node)->data
+#define node_data(Node)  (Node)->data
 
 #define left_node(Node)  (Node)->left
 
-#define right_node(Node)  (Node)->right
+#define right_node(Node) (Node)->right
 
 #define TreeCtor(tr) tree_ctor(#tr, __PRETTY_FUNCTION__, __FILE__, __LINE__)
 

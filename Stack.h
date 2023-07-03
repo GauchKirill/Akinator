@@ -31,7 +31,7 @@ typedef enum _Poisons {
     POISON_CANARY   = -1,
 } Poisons;
 
-typedef enum _errors {
+typedef enum errors {
     STACK_OK         = 0x0,
     STACK_NULLPTR    = 0x1,
     STACK_NULL_DATA  = 0x2,
