@@ -70,7 +70,7 @@ void new_object(tree* tr, node*     old_node)
     stack* stk_of_name   = nullptr;
     stack* stk_of_answer = nullptr;
 
-    if (find_def(tr->root, stk_of_name, stk_of_answer, name) == INSIDE_TREE)
+    if (find_def(tr->root, &stk_of_name, &stk_of_answer, name) == INSIDE_TREE)
     {
         printf("Это слово уже есть в дереве\n");
         print_definition(name, stk_of_name, stk_of_answer);

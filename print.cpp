@@ -25,6 +25,9 @@ void print_node_to_file(const node* now_node, size_t num_layer, FILE* tree_file)
 
 void print_definition(elem_t name, stack* name_stk, stack* answer_stk)
 {
+    if (name_stk->size == 0)
+        return;
+    
     printf("\"%s\" это", name);
 
     while(name_stk->size > 0)
