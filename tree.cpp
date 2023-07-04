@@ -59,8 +59,6 @@ void tree_dtor(tree* tr)
 {
     if (!tr)
         return;
-    tr->info.name_tree = tr->info.name_file = tr->info.name_func = (const char*) TREE_POISON_NAME;
-    tr->info.num_str  = TREE_POISON_STR;
     node_dtor(tr->root);
     free(tr);
 }

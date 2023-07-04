@@ -7,52 +7,67 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-tree* read_tree_from_text()
+tree* get_tree(const char* name_tree_file)
 {
-    printf ("Введите название файла с деревом или \"-\", если хотите продолжить с системным деревом\n");
-    char name_file[MAX_LENGHT_NAME_FILE] = "";
-    scanf("%s", name_file);
-    getchar();
-    if (strncmp(name_file, "-", MAX_LENGHT_NAME_FILE) == 0)
+    
+    if (!name_tree_file)
     {
-        tree* tr = TreeCtor(tr);
-        if (!tr)
-        {
-            printf ("Has not memory\n");
-            return nullptr;
-        }
-        return tr;
+        char name_file[MAX_LENGHT_NAME_FILE] = "";
+        printf ("\nВведите название файла с деревом или \"-\", если хотите продолжить с пустым деревом\n");
+        scanf("%s", name_file);
+        getchar();
 
-    } else
-        return tree_from_file(name_file);
+        if (strncmp(name_file, "-", MAX_LENGHT_NAME_FILE) == 0)
+        {
+            tree* tr = TreeCtor(tr);
+            if (!tr)
+            {
+                printf ("\nHas not memory for tree\n");
+                return nullptr;
+            }
+            return tr;
+
+        } else
+            return tree_from_file(name_file);
+    }
+    else
+        return tree_from_file(name_tree_file);
 }
 
-tree* tree_from_file(const char* name_file)
+tree* tree_from_file(const char* name_tree_file)
 {
     tree* tr = (tree*) calloc(1, sizeof(tree));
     if (!tr)
     {
-        printf("Has not memory for tree\n");
+        printf("\nHas not memory for tree\n");
         return nullptr;
     }
 
-    const char* buf = get_buf(name_file);
+    const char* buf = get_buf(name_tree_file);
     if (!buf)
-        return nullptr;
+    {
+        tree_dtor(tr);
+        return get_tree(nullptr);
+    }
+        
     tr->root = parse_buf(tr->root, &buf);
     if (!tr->root)
-        return nullptr;
+    {
+        tree_dtor(tr);
+        return get_tree(nullptr);
+    }
+        
     return tr;
 }
 
 char* get_buf(const char* name_file)
 {
-    char* buf;
+    char* buf = nullptr;
     struct stat stbuf;
     
     if (stat(name_file, &stbuf) == -1)
     {
-        printf ("Can not open file \"%s\"\n", name_file);
+        printf ("\nCan not open file \"%s\"\n", name_file);
         return nullptr;
     }
     else
@@ -61,13 +76,14 @@ char* get_buf(const char* name_file)
         buf = (char*) calloc(size, sizeof(char));
         if (!buf)
         {
-            printf("Has not memory for buf\n");
+            printf("\nHas not memory for buf\n");
             return nullptr;
         }
         FILE* file = fopen(name_file, "r");
         if (!file)
         {
-            printf ("Can not open file \"%s\"\n", name_file);
+            free(buf);
+            printf ("\nCan not open file \"%s\"\n", name_file);
             return nullptr;
         }
 

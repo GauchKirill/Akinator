@@ -12,13 +12,13 @@ void akinator(tree* tr)
 {
     if (!tr || !tr->root)
     {
-        printf("Невалидные указатели\n");
+        printf("\nНевалидные указатели\n");
         return;
     }
     while (true)
     {
         ask_quation(tr, tr->root);
-        printf("Хотите продолжить?\n");
+        printf("\nХотите продолжить?\n");
         if (get_answer() == 0) break;
     }
 
@@ -38,32 +38,18 @@ void ask_quation(tree* tr, node* now_node)
             ask_quation(tr, right_node(now_node));  
     } else
     {
-        printf("Наверное это %s?\n", node_data(now_node));
+        printf("\nНаверное это %s?\n", node_data(now_node));
 
         if (get_answer())
-            printf ("Я угадал, я молодец!\n");
+            printf ("\nЯ угадал, я молодец!\n");
         else
             new_object(tr, now_node);
     }
 }
 
-int get_answer(void)
-{
-    char answer[MAX_LENGHT_ANSWER] = "";
-    do
-    {
-        printf("Введите \"%s\" (да) или \"%s\" (нет)?\n", YES, NO);
-        scanf("%s", answer);
-    }
-    while (strncmp(answer, YES, MAX_LENGHT_ANSWER) != 0 &&
-           strncmp(answer, NO,  MAX_LENGHT_ANSWER) != 0);
-
-    return strncmp(answer, NO, MAX_LENGHT_ANSWER);
-}
-
 void new_object(tree* tr, node*     old_node)
 {
-    printf("Кто/что это был(a/о)?\n");
+    printf("\nКто/что это был(a/о)?\n");
     char name[MAX_LENGHT_DATA] = "";
     getchar();
     fgets(name, MAX_LENGHT_DATA, stdin);
@@ -73,12 +59,12 @@ void new_object(tree* tr, node*     old_node)
 
     if (find_def(tr->root, &stk_of_name, &stk_of_answer, name) == INSIDE_TREE)
     {
-        printf("Это слово уже есть в дереве\n");
+        printf("\nЭто слово уже есть в дереве\n");
         print_definition(name, stk_of_name, stk_of_answer);
         return;
     }
 
-    printf("Чем \"%s\" отличается от \"%s\"?\n Он(а/о) ...\n", name, node_data(old_node));
+    printf("\nЧем \"%s\" отличается от \"%s\"?\n Он(а/о) ...\n", name, node_data(old_node));
     char difference[MAX_LENGHT_DATA] = "";
     fgets(difference, MAX_LENGHT_DATA, stdin);
     difference[strlen(difference) - 1] = '\0';

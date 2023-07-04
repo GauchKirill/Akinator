@@ -98,7 +98,7 @@ void comparation(tree* tr)
         }
         else
         {
-            printf("\"%s\" и \"%s\" полностью разлины.\n", word_1, word_2);
+            printf("\n\"%s\" и \"%s\" полностью разлины.\n", word_1, word_2);
             print_difference
 
         }

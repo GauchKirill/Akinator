@@ -46,8 +46,22 @@ void print_definition(elem_t name, stack* name_stk, stack* answer_stk)
     printf("\n");
 }
 
-#define define_mod(first_flag, secong_flag, description, ...)           \
-    printf("%-3s    %-15s   %-s\n", first_flag, secong_flag, description);
+int get_answer(void)
+{
+    char answer[MAX_LENGHT_ANSWER] = "";
+    do
+    {
+        printf("Введите \"%s\" (да) или \"%s\" (нет)?\n", YES, NO);
+        scanf("%s", answer);
+    }
+    while (strncmp(answer, YES, MAX_LENGHT_ANSWER) != 0 &&
+           strncmp(answer, NO,  MAX_LENGHT_ANSWER) != 0);
+
+    return strncmp(answer, NO, MAX_LENGHT_ANSWER);
+}
+
+#define define_mod(first_flag, second_flag, description, ...)           \
+    printf("%-3s    %-15s   %-s\n", first_flag, second_flag, description);
 
 void printf_help(void)
 {
