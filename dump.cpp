@@ -62,8 +62,8 @@ void dump_note(node* top, int* num_node, FILE* dump_file)
 void save_tree(const tree* tr)
 {
     if (!tr) return;
-    printf("Введите имя файла, куда записать получившееся дерево или \"-\", чтобы пропустить шаг?\n");
-    char name_file[MAX_LENGHT_NAME_FILE]  = "";
+    printf("Введите имя файла, куда записать получившееся дерево или \"-\", чтобы пропустить шаг.\n");
+    char name_file[MAX_LENGHT_NAME_FILE] = "";
     scanf("%s", name_file);
     if (strncmp(name_file, "-", 2) == 0)
         return;
