@@ -22,8 +22,13 @@ void akinator(tree* tr)
         if (get_answer() == 0) break;
     }
 
-    save_tree(tr);
-    dump(tr);
+    printf("\nХотите сохранить получившееся дерево?\n");
+    
+    if (get_answer())
+        dump(tr);
+    else
+        return;
+
 }
 
 void ask_quation(tree* tr, node* now_node)

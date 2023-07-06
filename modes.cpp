@@ -2,6 +2,7 @@
 #include "read_tree.h"
 #include "print.h"
 #include "settings.h"
+#include "dump.h"
 #include <string.h>
 
 unsigned get_modes_num(void)

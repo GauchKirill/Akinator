@@ -3,34 +3,48 @@
 #include "settings.h"
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-void dump(tree* tr)
+void dump(const tree* tr)
 {
-    if (!tr) return;
-    char name_dump_file[MAX_LENGHT_NAME_FILE] = {0};
-    printf ("\nВведите название файла для диагностики с расширением .dot или введите \"-\" чтобы пропустить шаг\n");
-    scanf ("%s", name_dump_file);
-    if (strncmp(name_dump_file, "-", 2) == 0)
-        return;
-    FILE* dump_file = fopen(name_dump_file, "w");
-    if (!dump_file)
+    if (!tr) 
     {
-        printf("Cann't open file %s\n", name_dump_file);
+        printf("\nНе валидные указатели.\n");
         return;
     }
 
-    fprintf (dump_file,
+    char name_file[MAX_LENGHT_NAME_FILE] = "";
+    printf("\nВведите имя файла без расширения, куда сохранить дерево\n");
+    scanf("%s", name_file);
+
+    char system_instruction[MAX_LENGHT_INSTRUCTION] = "";
+    sprintf(system_instruction, "%s.dot", name_file);
+    FILE* dump_file_ptr = fopen(system_instruction, "w");
+    if (!dump_file_ptr)
+    {
+        printf("Cann't open file %s.dot\n", name_file);
+        return;
+    }
+
+    fprintf (dump_file_ptr,
         "digraph G{\n"
         "   rankdir=TB;\n"
         "   node[shape=\"rectangle\",fontsize=14];\n"
         "   edge[arrowhead=\"open\"];\n");
     int num_node = 0;
-    dump_note(tr->root, &num_node, dump_file);
+    dump_note(tr->root, &num_node, dump_file_ptr);
 
-    fprintf (dump_file,
+    fprintf (dump_file_ptr,
         "}\n");
-    fclose(dump_file);
-    system ("dot -Tpng tree.dot -o tree.png");
+    fclose(dump_file_ptr);
+    
+    sprintf(system_instruction, "dot -Tpng %s.dot -o %s.png", name_file, name_file);
+    system(system_instruction);
+
+    printf("\nEND DUMP\n");
+    save_tree(strncat(name_file, ".txt", 5), tr);
+    
+    return;
 }
 
 #define edge(num1, num2, label)                             \
@@ -57,17 +71,12 @@ void dump_note(node* top, int* num_node, FILE* dump_file)
         edge(num_now_node, *num_node, "no");
         dump_note(right_node(top), num_node, dump_file);
     }
+
+    return;
 }
 
-void save_tree(const tree* tr)
+void save_tree(const char* name_file, const tree* tr)
 {
-    if (!tr) return;
-    printf("Введите имя файла, куда записать получившееся дерево или \"-\", чтобы пропустить шаг.\n");
-    char name_file[MAX_LENGHT_NAME_FILE] = "";
-    scanf("%s", name_file);
-    if (strncmp(name_file, "-", 2) == 0)
-        return;
-
     FILE* tree_file = fopen(name_file, "w");
     if (!tree_file)
     {
@@ -77,4 +86,6 @@ void save_tree(const tree* tr)
 
     print_node_to_file(tr->root, 0, tree_file);
     fclose(tree_file);
+
+    return;
 }
