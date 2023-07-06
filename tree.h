@@ -54,6 +54,6 @@ tree* tree_ctor (const char* name_of_tree, const char* name_of_func, const char*
 node* make_node (elem_t data_of_node, node* left_ptr, node* right_ptr);
 void  tree_dtor (tree* tr);
 void  node_dtor (node* now_node);
-char* make_data (elem_t data_of_node);
+char* make_data (const char* data_of_node);
 
 #endif

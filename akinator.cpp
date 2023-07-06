@@ -5,9 +5,6 @@
 #include "settings.h"
 #include <string.h>
 
-elem_t YES = (elem_t) "y";
-elem_t NO  = (elem_t) "n";
-
 void akinator(tree* tr)
 {
     if (!tr || !tr->root)

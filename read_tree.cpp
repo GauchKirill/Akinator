@@ -72,7 +72,7 @@ char* get_buf(const char* name_file)
     }
     else
     {
-        size_t size = stbuf.st_size + 1;
+        size_t size = (size_t) stbuf.st_size + 1;
         buf = (char*) calloc(size, sizeof(char));
         if (!buf)
         {
@@ -110,7 +110,7 @@ node* parse_buf(node* now_node, const char** buf)
 node* parse_block(node* now_node, const char** buf)
 {
     char data[MAX_LENGHT_DATA] = "";
-    int length = strpbrk(*buf, "{}\n") - *buf;
+    size_t length = (size_t) (strpbrk(*buf, "{}\n") - *buf);
     strncpy(data, *buf + 1, length);
     data[length - 2] = '\0';
     (*buf) += length;

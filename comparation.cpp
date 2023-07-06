@@ -6,7 +6,7 @@
 #include <string.h>
 
 extern elem_t YES;
-extern elem_t NO;           
+extern elem_t NO ;
 
 void get_word(char* word, int num)
 {

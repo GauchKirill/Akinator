@@ -5,7 +5,7 @@
 #include <string.h>
 
 extern elem_t YES;
-extern elem_t NO;
+extern elem_t NO ;
     
 void definition(tree* tr)
 {

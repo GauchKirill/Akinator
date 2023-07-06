@@ -124,7 +124,7 @@ unsigned Stack_Ctor( stack** stk, size_t n, const char* name_stk, const char* na
 
         if( (*stk)->data != NULL)
         {
-            for( int i = 0; i < n; i++)
+            for( size_t i = 0; i < n; i++)
                 ((*stk)->data)[i] = POISON;
             
             (*stk)->size = 0;
@@ -201,7 +201,7 @@ unsigned StackVerify( stack* stk)
             if( stk->capacity < MIN_SIZE_DATA )
                 err |= INVALID_CAPACITY;
 
-            if( stk->size < 0 && stk->size >= stk->capacity && (err & INVALID_CAPACITY == 0))
+            if( stk->size >= stk->capacity && ((err & INVALID_CAPACITY) == 0))
                 err |= INVALID_SIZE;
 
             if( (stk->hash != Stack_hash_FAQ6( stk)) || (stk->canary != Canary))
@@ -209,9 +209,9 @@ unsigned StackVerify( stack* stk)
                 err |= STACK_IS_ATACKED;
             }
 
-            if(err == STACK_OK)
+            if( err == STACK_OK)
             {
-                for(int i = 0; i < stk->size; i++)
+                for( size_t i = 0; i < stk->size; i++)
                 {
                     if(stk->data[i] == POISON || stk->data == NULL)
                     {
@@ -256,7 +256,7 @@ unsigned StackResize( stack* stk, const int condition)
 
         #ifdef DUMPLING
 
-            for( int i = stk->size; i < stk->capacity; i++)
+            for( size_t i = stk->size; i < stk->capacity; i++)
                 stk->data[i] = POISON;
 
         #endif
@@ -279,7 +279,7 @@ unsigned StackResize( stack* stk, const int condition)
 
         #ifdef DUMPLING
 
-            for( int i = stk->size; i < stk->capacity; i++)
+            for( size_t i = stk->size; i < stk->capacity; i++)
                 stk->data[i] = POISON;
 
         #endif
@@ -321,12 +321,12 @@ unsigned Printf_stk( stack* stk)
             stk, (err == STACK_OK) ? "Ok" : "ERROR", stk->info.name, stk->info.func, stk->info.file, stk->info.line,
             stk->size, stk->capacity, stk->data);
 
-    for( int i = 0; i < stk->capacity; i++)
+    for( size_t i = 0; i < stk->capacity; i++)
     {
         if( i < stk->size)
-            printf( "        *[%d] = ", i);
+            printf( "        *[%zu] = ", i);
         else
-            printf( "         [%d] = ", i);
+            printf( "         [%zu] = ", i);
 
         printf( elem_out, stk->data[i]);
         printf( "\n");
@@ -412,12 +412,12 @@ void Stack_Dump( stack* stk, const unsigned err, const char* name_wrong_file, co
                     stk, (err == STACK_OK) ? "Ok" : "ERROR", stk->info.name, stk->info.func, stk->info.file, stk->info.line,
                     stk->data, stk->size, stk->capacity);
 
-                for( int i = 0; i < stk->capacity; i++)
+                for( size_t i = 0; i < stk->capacity; i++)
                 {
                     if( i < stk->size)
-                        fprintf( log_stream, "*[%d] = ", i);
+                        fprintf( log_stream, "*[%zu] = ", i);
                     else
-                        fprintf( log_stream, " [%d] = ", i);
+                        fprintf( log_stream, " [%zu] = ", i);
 
                     fprintf( log_stream, elem_out, stk->data[i]);
                     fprintf( log_stream, "\n");
@@ -438,12 +438,12 @@ void Stack_Dump( stack* stk, const unsigned err, const char* name_wrong_file, co
                     stk, (err == STACK_OK) ? "Ok" : "ERROR", stk->info.name, stk->info.func, stk->info.file, stk->info.line,
                     stk->data, stk->size, stk->capacity);
 
-                for( int i = 0; i < stk->capacity; i++)
+                for( size_t i = 0; i < stk->capacity; i++)
                 {
                     if( i < stk->size)
-                        fprintf( log_stream, "*[%d] = ", i);
+                        fprintf( log_stream, "*[%zu] = ", i);
                     else
-                        fprintf( log_stream, " [%d] = ", i);
+                        fprintf( log_stream, " [%zu] = ", i);
 
                     fprintf( log_stream, elem_out, stk->data[i]);
                     fprintf( log_stream, "\n");
@@ -462,12 +462,12 @@ void Stack_Dump( stack* stk, const unsigned err, const char* name_wrong_file, co
                     stk, (err == STACK_OK) ? "Ok" : "ERROR", stk->info.name, stk->info.func, stk->info.file, stk->info.line,
                     stk->data, stk->size, stk->capacity);
 
-                for( int i = 0; i < stk->capacity; i++)
+                for( size_t i = 0; i < stk->capacity; i++)
                 {
                     if( i < stk->size)
-                        fprintf( log_stream, "*[%d] = ", i);
+                        fprintf( log_stream, "*[%zu] = ", i);
                     else
-                        fprintf( log_stream, " [%d] = ", i);
+                        fprintf( log_stream, " [%zu] = ", i);
 
                     fprintf( log_stream, elem_out, stk->data[i]);
                     fprintf( log_stream, "\n");
@@ -490,7 +490,7 @@ unsigned long long Stack_hash_FAQ6( const stack* stk)
 
     char* ptr = (char*) stk->data; 
 
-    for (int i = 0; i < stk->capacity * sizeof( elem_t); i++)
+    for (unsigned i = 0; i < stk->capacity * sizeof( elem_t); i++)
     {
         hash_data += (unsigned char) (*(ptr+i));
         hash_data += (hash_data << 10);
@@ -500,21 +500,21 @@ unsigned long long Stack_hash_FAQ6( const stack* stk)
     hash_data ^= (hash_data >> 11);
     hash_data += (hash_data << 15);
 
-    unsigned long long hash_skt = 0;
+    unsigned long long hash_stk = 0;
 
     ptr = (char*) stk;
 
-    for (int i = 0; i < n; i++)
+    for (unsigned i = 0; i < n; i++)
     {
-        hash_skt += (unsigned char) (*(ptr+i));
-        hash_skt += (hash_skt << 10);
-        hash_skt ^= (hash_skt >> 6);
+        hash_stk += (unsigned char) (*(ptr+i));
+        hash_stk += (hash_stk << 10);
+        hash_stk ^= (hash_stk >> 6);
     }
-    hash_skt += (hash_skt << 3);
-    hash_skt ^= (hash_skt >> 11);
-    hash_skt += (hash_skt << 15);     
+    hash_stk += (hash_stk << 3);
+    hash_stk ^= (hash_stk >> 11);
+    hash_stk += (hash_stk << 15);     
 
-    return hash_skt + hash_data;
+    return hash_stk + hash_data;
 }
 
 #endif

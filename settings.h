@@ -6,4 +6,4 @@ const size_t    MAX_LENGHT_NAME_FILE    = 100;
 const size_t    MAX_LENGHT_ANSWER       = 4;
 const size_t    MAX_LENGHT_INSTRUCTION  = 300;
 
-#endif
+#endif  

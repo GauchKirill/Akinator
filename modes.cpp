@@ -5,17 +5,20 @@
 #include "dump.h"
 #include <string.h>
 
-unsigned get_modes_num(void)
+elem_t YES = "y";
+elem_t NO  = "n";
+
+int get_modes_num(void)
 {
     printf("\nВведите номер режима:\n");
     #define define_mod(first_flag, second_flag, description, function, cnt_char, need_tree, mod_name)   \
-        printf("%u - %-15s - %s\n", mod_name, second_flag + 2, description);
+        printf("%d - %-15s - %s\n", mod_name, second_flag + 2, description);
 
     #include "flags.h"
 
     #undef define_mod
 
-    unsigned modes_num = 0;
+    int modes_num = 0;
 
     #define define_mod(first_flag, second_flag, description, function, cnt_char, need_tree, mod_name)   \
         case mod_name:                                                                                  \
@@ -25,7 +28,7 @@ unsigned get_modes_num(void)
     {
         char trush[MAX_LENGHT_DATA] = "";
         printf("\nОтветом должно быть целое число от 0 до %u\n", (unsigned) CNT_MODES - 1);
-        while(scanf("%u", &modes_num) != 1)
+        while(scanf("%d", &modes_num) != 1)
             scanf("%s", trush);
 
         switch (modes_num)
@@ -44,7 +47,7 @@ unsigned get_modes_num(void)
 
 void modes(int argc, const char** argv)
 {
-    unsigned modes_num = 0;
+    int modes_num = 0;
     
     if (argc == 1)
         modes_num = get_modes_num();
@@ -83,6 +86,8 @@ void modes(int argc, const char** argv)
         switch (modes_num)
         {
             #include "flags.h"
+            default:
+                printf("\nНет режима с номером %d\n", modes_num);
         }
 
         #undef define_mod

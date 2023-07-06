@@ -7,7 +7,7 @@
 tree* tree_ctor(const char* name_of_tree, const char* name_of_func, const char* name_of_file, size_t num_str)
 {
     tree* tr   = (tree*) calloc(1, sizeof(tree));
-    node* start_root = make_node((elem_t) "", nullptr, nullptr); 
+    node* start_root = make_node("", nullptr, nullptr); 
     
     if (!tr || !start_root)
         return nullptr;
@@ -46,7 +46,7 @@ node* make_node (elem_t data_of_node, node* left_ptr, node* right_ptr)
     return new_node;
 }
 
-elem_t make_data(elem_t data)
+char* make_data(const char* data)
 {
     elem_t copy_data = (elem_t) calloc(MAX_LENGHT_DATA + 1, sizeof(char));
     if (copy_data)
