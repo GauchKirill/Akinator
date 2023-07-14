@@ -2,7 +2,7 @@
 #define MODES_H
 
 #include "tree.h"
-#define define_mod(first_flag, second_flag, description, function, num_char, need_tree, name) \
+#define define_mod(short_flag, long_flag, description, function, num_char, need_tree, name) \
     name,
 enum modes_numbers 
 {

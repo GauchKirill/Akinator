@@ -7,8 +7,8 @@
 int get_modes_num(void)
 {
     printf("\nВведите номер режима:\n");
-    #define define_mod(first_flag, second_flag, description, function, cnt_char, need_tree, mod_name)   \
-        printf("%d - %-15s - %s\n", mod_name, second_flag + 2, description);
+    #define define_mod(short_flag, long_flag, description, function, cnt_char, need_tree, mod_name)   \
+        printf("%d - %-15s - %s\n", mod_name, long_flag + 2, description);
 
     #include "../settings_files/flags.h"
 
@@ -16,7 +16,7 @@ int get_modes_num(void)
 
     int modes_num = 0;
 
-    #define define_mod(first_flag, second_flag, description, function, cnt_char, need_tree, mod_name)   \
+    #define define_mod(short_flag, long_flag, description, function, cnt_char, need_tree, mod_name)   \
         case mod_name:                                                                                  \
             return modes_num;
 
@@ -48,8 +48,8 @@ void modes(int argc, const char** argv)
         modes_num = get_modes_num();
     else
     {
-        #define define_mod(first_flag, second_flag, description, function, cnt_char, need_tree, mod_name)       \
-            if (strncmp(argv[1], first_flag, cnt_char) == 0 || strncmp(argv[1], second_flag, cnt_char) == 0)    \
+        #define define_mod(short_flag, long_flag, description, function, cnt_char, need_tree, mod_name)       \
+            if (strncmp(argv[1], short_flag, cnt_char) == 0 || strncmp(argv[1], long_flag, cnt_char) == 0)    \
                 modes_num = mod_name;                                                                           \
             else
 
@@ -71,7 +71,7 @@ void modes(int argc, const char** argv)
 
     while (modes_num != EXIT)
     {
-        #define define_mod(first_flag, second_flag, description, function, cnt_char, need_tree, mod_name)       \
+        #define define_mod(short_flag, long_flag, description, function, cnt_char, need_tree, mod_name)       \
             case mod_name:                                                                                      \
                 if (need_tree)                                                                                  \
                     tr = get_tree(name_tree_file);                                                              \

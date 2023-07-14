@@ -57,8 +57,8 @@ int get_answer(void)
     return strncmp(answer, NO, MAX_LENGHT_ANSWER);
 }
 
-#define define_mod(first_flag, second_flag, description, ...)           \
-    printf("%-3s    %-15s   %-s\n", first_flag, second_flag, description);
+#define define_mod(short_flag, long_flag, description, ...)           \
+    printf("%-3s    %-15s   %-s\n", short_flag, long_flag, description);
 
 void printf_help(void)
 {
