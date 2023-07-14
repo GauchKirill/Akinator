@@ -114,11 +114,11 @@ unsigned Stack_Ctor( stack** stk, size_t n, const char* name_stk, const char* na
 
     unsigned err = STACK_OK;
 
-    if( *stk != NULL)
+    if( *stk != nullptr)
     {
         (*stk)->data = (elem_t*) calloc( n, sizeof( elem_t));
 
-        if( (*stk)->data != NULL)
+        if( (*stk)->data != nullptr)
         {
             for( size_t i = 0; i < n; i++)
                 ((*stk)->data)[i] = POISON;
@@ -183,21 +183,21 @@ unsigned StackVerify( stack* stk)
 {
     unsigned err = STACK_OK;
 
-    if( stk == NULL) //nullptr
+    if( stk == nullptr) //nullptr
     {
         err |= STACK_NULLPTR;
         return err;
     } else
     {
 
-        if( stk->data == NULL || stk->data == (elem_t*) POISON_DATA)
+        if( stk->data == nullptr || stk->data == (elem_t*) POISON_DATA)
             err |= STACK_NULL_DATA;
         else
         {
             if( stk->capacity < MIN_SIZE_DATA )
                 err |= INVALID_CAPACITY;
 
-            if( stk->size >= stk->capacity && ((err & INVALID_CAPACITY) == 0))
+            if( stk->size > stk->capacity && ((err & INVALID_CAPACITY) == 0))
                 err |= INVALID_SIZE;
 
             if( (stk->hash != Stack_hash_FAQ6( stk)) || (stk->canary != Canary))
@@ -209,7 +209,7 @@ unsigned StackVerify( stack* stk)
             {
                 for( size_t i = 0; i < stk->size; i++)
                 {
-                    if(stk->data[i] == POISON || stk->data == NULL)
+                    if(stk->data[i] == POISON || stk->data == nullptr)
                     {
                         err |= INVALID_DATA;
                         break;
@@ -244,7 +244,7 @@ unsigned StackResize( stack* stk, const int condition)
 
         stk->data = (elem_t*) realloc( stk->data, stk->capacity * sizeof( elem_t)); //ffff
 
-        if( stk->data == NULL)
+        if( stk->data == nullptr)
         {
             err |= HAS_NOT_MEMORY;
             return err;
@@ -267,7 +267,7 @@ unsigned StackResize( stack* stk, const int condition)
             stk->data = (elem_t*) realloc( stk->data, stk->capacity * sizeof( elem_t));
         }
 
-        if( stk->data == NULL)
+        if( stk->data == nullptr)
         {
             err |= HAS_NOT_MEMORY;
             return err;
@@ -350,7 +350,7 @@ void Stack_Dump( stack* stk, const unsigned err, const char* name_wrong_file, co
     {
         log_stream = fopen( log_file_name, "a");
 
-        if( log_stream == NULL)
+        if( log_stream == nullptr)
             return;
 
         if( err & HAS_NOT_MEMORY)
