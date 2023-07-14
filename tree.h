@@ -2,7 +2,7 @@
 #define TREE_H
 
 #include <stdint.h>
-#include <stdio.h>
+#include <stddef.h>  // stddef.h
 
 typedef char* elem_t;
 extern const char* elem_out;

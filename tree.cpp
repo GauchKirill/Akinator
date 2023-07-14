@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 tree* tree_ctor(const char* name_of_tree, const char* name_of_func, const char* name_of_file, size_t num_str)
 {

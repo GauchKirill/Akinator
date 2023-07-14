@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <stdio.h>
 
 tree* get_tree(const char* name_tree_file)
 {

@@ -2,6 +2,7 @@
 #define DUMP_H
 
 #include "tree.h"
+#include <stdio.h>
 
 void dump 		(const tree* tr);
 void dump_note 	(node* top, int* num_node, FILE* dump_file);

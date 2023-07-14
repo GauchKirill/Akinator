@@ -3,6 +3,7 @@
 
 #include "tree.h"
 #include "Stack.h"
+#include <stdio.h>
 
 #define print_tabs(num_tab)                                     \
     for (size_t i = 1; i <= num_tab; i++) fprintf(tree_file, "  ");
