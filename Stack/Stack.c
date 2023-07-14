@@ -484,7 +484,7 @@ unsigned long long Stack_hash_FAQ6( const stack* stk)
 
     unsigned long long hash_data = 0;
 
-    char* ptr = (char*) stk->data; 
+    const char* ptr = (const char*) stk->data; 
 
     for (unsigned i = 0; i < stk->capacity * sizeof( elem_t); i++)
     {
@@ -498,7 +498,7 @@ unsigned long long Stack_hash_FAQ6( const stack* stk)
 
     unsigned long long hash_stk = 0;
 
-    ptr = (char*) stk;
+    ptr = (const char*) stk;
 
     for (unsigned i = 0; i < n; i++)
     {
