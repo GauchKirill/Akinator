@@ -4,11 +4,7 @@
 #include <sys/types.h>
 #include <stdio.h>
 
-elem_t       POISON        = nullptr;
-const int    MIN_SIZE_DATA = 4;
-const char*  log_file_name = (const char*) "log_file.txt";
-FILE*        log_stream    = nullptr;
-const char*  elem_out      = "%p";
+#include "../settings_files/stack_settings.h"
 
 #ifdef DUMPLING
 

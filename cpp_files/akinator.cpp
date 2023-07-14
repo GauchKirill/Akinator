@@ -2,7 +2,7 @@
 #include "../h_files/definition.h"
 #include "../h_files/dump.h"
 #include "../h_files/print.h"
-#include "../settings_files/settings.h"
+#include "../settings_files/akinator_settings.h"
 #include <string.h>
 
 void akinator(tree* tr)

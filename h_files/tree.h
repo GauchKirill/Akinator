@@ -4,8 +4,7 @@
 #include <stdint.h>
 #include <stddef.h>  // stddef.h
 
-typedef char* elem_t;
-extern const char* elem_out;
+#include "../settings_files/elem_settings.h"
 
 typedef struct
 {
@@ -27,15 +26,7 @@ typedef struct
 {
     node*     root;
     tree_info info;
-} tree;
-
-enum poisons
-{
-    TREE_POISON_DATA = 0,
-    TREE_POISON_PTR  = 0,
-    TREE_POISON_NAME = 0,
-    TREE_POISON_STR  = SIZE_MAX,
-};
+} tree;        
 
 enum tree_errors
 {

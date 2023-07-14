@@ -1,12 +1,8 @@
 #include "../h_files/modes.h"
 #include "../h_files/read_tree.h"
 #include "../h_files/print.h"
-#include "../settings_files/settings.h"
 #include "../h_files/dump.h"
 #include <string.h>
-
-elem_t YES = "y";
-elem_t NO  = "n";
 
 int get_modes_num(void)
 {
@@ -26,10 +22,9 @@ int get_modes_num(void)
 
     while (true)
     {
-        char trush[MAX_LENGHT_DATA] = "";
         printf("\nОтветом должно быть целое число от 0 до %u\n", (unsigned) CNT_MODES - 1);
         while(scanf("%d", &modes_num) != 1)
-            scanf("%s", trush);
+            scanf("%*s");
 
         switch (modes_num)
         {

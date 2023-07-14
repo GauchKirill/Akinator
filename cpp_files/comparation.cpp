@@ -2,11 +2,8 @@
 #include "../h_files/print.h"
 #include "../h_files/definition.h"
 #include "../Stack/Stack.h"
-#include "../settings_files/settings.h"
+#include "../settings_files/akinator_settings.h"
 #include <string.h>
-
-extern elem_t YES;
-extern elem_t NO ;
 
 void get_word(char* word, int num)
 {

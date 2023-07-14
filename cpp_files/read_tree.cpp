@@ -1,6 +1,5 @@
 #include "../h_files/read_tree.h"
-#include "../settings_files/settings.h"
-
+#include "../settings_files/akinator_settings.h"
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>

@@ -1,9 +1,6 @@
 #include "../h_files/print.h"
-#include "../settings_files/settings.h"
+#include "../settings_files/akinator_settings.h"
 #include <string.h>
-
-extern elem_t YES;
-extern elem_t NO ;
 
 void print_node_to_file(const node* now_node, size_t num_layer, FILE* tree_file)
 {
