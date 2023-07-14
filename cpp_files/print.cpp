@@ -46,15 +46,16 @@ void print_definition(elem_t name, stack* name_stk, stack* answer_stk)
 int get_answer(void)
 {
     char answer[MAX_LENGHT_ANSWER] = "";
+    int is_no = 0;
     do
     {
         printf("Введите \"%s\" (да) или \"%s\" (нет)?\n", YES, NO);
         scanf("%s", answer);
     }
-    while (strncmp(answer, YES, MAX_LENGHT_ANSWER) != 0 &&
-           strncmp(answer, NO,  MAX_LENGHT_ANSWER) != 0);
+    while (         strncmp(answer, YES, MAX_LENGHT_ANSWER) != 0 &&
+           (is_no = strncmp(answer, NO,  MAX_LENGHT_ANSWER) != 0));
 
-    return strncmp(answer, NO, MAX_LENGHT_ANSWER);
+    return is_no;
 }
 
 #define define_mod(short_flag, long_flag, description, ...)           \
