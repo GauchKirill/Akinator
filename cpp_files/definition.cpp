@@ -1,7 +1,7 @@
-#include "definition.h"
-#include "akinator.h"
-#include "print.h"
-#include "settings.h"
+#include "../h_files/definition.h"
+#include "../h_files/akinator.h"
+#include "../h_files/print.h"
+#include "../settings_files/settings.h"
 #include <string.h>
 
 extern elem_t YES;

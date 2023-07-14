@@ -6,7 +6,7 @@
     name,
 enum modes_numbers 
 {
-    #include "flags.h"
+    #include "../settings_files/flags.h"
     CNT_MODES,
 };
 

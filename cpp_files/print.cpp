@@ -1,5 +1,5 @@
-#include "print.h"
-#include "settings.h"
+#include "../h_files/print.h"
+#include "../settings_files/settings.h"
 #include <string.h>
 
 extern elem_t YES;
@@ -65,7 +65,7 @@ int get_answer(void)
 
 void printf_help(void)
 {
-    #include "flags.h"
+    #include "../settings_files/flags.h"
 }
 
 #undef define_mod

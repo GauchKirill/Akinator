@@ -1,8 +1,8 @@
-#include "modes.h"
-#include "read_tree.h"
-#include "print.h"
-#include "settings.h"
-#include "dump.h"
+#include "../h_files/modes.h"
+#include "../h_files/read_tree.h"
+#include "../h_files/print.h"
+#include "../settings_files/settings.h"
+#include "../h_files/dump.h"
 #include <string.h>
 
 elem_t YES = "y";
@@ -14,7 +14,7 @@ int get_modes_num(void)
     #define define_mod(first_flag, second_flag, description, function, cnt_char, need_tree, mod_name)   \
         printf("%d - %-15s - %s\n", mod_name, second_flag + 2, description);
 
-    #include "flags.h"
+    #include "../settings_files/flags.h"
 
     #undef define_mod
 
@@ -33,7 +33,7 @@ int get_modes_num(void)
 
         switch (modes_num)
         {
-            #include "flags.h"
+            #include "../settings_files/flags.h"
             default:
                 printf("\nТакого режима не существует, попробуйте ещё раз.\n");\
                 break;
@@ -58,7 +58,7 @@ void modes(int argc, const char** argv)
                 modes_num = mod_name;                                                                           \
             else
 
-        #include "flags.h"
+        #include "../settings_files/flags.h"
         {
             printf("\nТакая команда не найдена.\n");
             modes_num = HELP;
@@ -85,7 +85,7 @@ void modes(int argc, const char** argv)
 
         switch (modes_num)
         {
-            #include "flags.h"
+            #include "../settings_files/flags.h"
             default:
                 printf("\nНет режима с номером %d\n", modes_num);
         }

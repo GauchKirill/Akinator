@@ -1,7 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include "tree.h"
+#include "../h_files/tree.h"
 
 #define DUMPLING
 #define StackCtor(stk, size) Stack_Ctor((stk), (size), #stk, __FILE__, __PRETTY_FUNCTION__, __LINE__)

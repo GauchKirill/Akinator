@@ -1,5 +1,5 @@
-#include "read_tree.h"
-#include "settings.h"
+#include "../h_files/read_tree.h"
+#include "../settings_files/settings.h"
 
 #include <string.h>
 #include <ctype.h>

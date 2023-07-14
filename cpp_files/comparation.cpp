@@ -1,8 +1,8 @@
-#include "comparation.h"
-#include "print.h"
-#include "definition.h"
-#include "Stack.h"
-#include "settings.h"
+#include "../h_files/comparation.h"
+#include "../h_files/print.h"
+#include "../h_files/definition.h"
+#include "../Stack/Stack.h"
+#include "../settings_files/settings.h"
 #include <string.h>
 
 extern elem_t YES;

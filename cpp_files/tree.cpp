@@ -1,5 +1,5 @@
-#include "tree.h"
-#include "settings.h"
+#include "../h_files/tree.h"
+#include "../settings_files/settings.h"
 
 #include <stdlib.h>
 #include <string.h>

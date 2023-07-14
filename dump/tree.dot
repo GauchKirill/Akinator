@@ -1,0 +1,30 @@
+digraph G{
+   rankdir=TB;
+   node[shape="rectangle",fontsize=14];
+   edge[arrowhead="open"];
+   V0[label="съедобное"];
+   V0->V1[label="yes"];
+   V1[label="прямоугольный"];
+   V1->V2[label="yes"];
+   V2[label="пряник"];
+   V1->V3[label="no"];
+   V3[label="ананас"];
+   V0->V4[label="no"];
+   V4[label="неодушевлённое"];
+   V4->V5[label="yes"];
+   V5[label="музыкальное"];
+   V5->V6[label="yes"];
+   V6[label="гитара"];
+   V5->V7[label="no"];
+   V7[label="небо"];
+   V4->V8[label="no"];
+   V8[label="высокий"];
+   V8->V9[label="yes"];
+   V9[label="жираф"];
+   V8->V10[label="no"];
+   V10[label="ведёт матан"];
+   V10->V11[label="yes"];
+   V11[label="Людмила Николаевна"];
+   V10->V12[label="no"];
+   V12[label="собака"];
+}

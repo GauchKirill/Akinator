@@ -2,7 +2,7 @@
 #define DEFINITION_H
 
 #include "tree.h"
-#include "Stack.h"
+#include "../Stack/Stack.h"
 
 enum definition_state
 {

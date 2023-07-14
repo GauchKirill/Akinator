@@ -1,6 +1,6 @@
-#include "dump.h"
-#include "print.h"
-#include "settings.h"
+#include "../h_files/dump.h"
+#include "../h_files/print.h"
+#include "../settings_files/settings.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>

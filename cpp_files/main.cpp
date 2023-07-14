@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "modes.h"
+#include "../h_files/modes.h"
 
 int main(int argc, const char** argv)
 {
