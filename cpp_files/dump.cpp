@@ -15,7 +15,7 @@ void dump(const tree* tr)
 
     char name_file[MAX_LENGHT_NAME_FILE] = "";
     printf("\nВведите имя файла без расширения, куда сохранить дерево\n");
-    scanf("%s", name_file);
+    fgets(name_file, MAX_LENGHT_NAME_FILE, stdin);
 
     char system_instruction[MAX_LENGHT_INSTRUCTION] = "";
     sprintf(system_instruction, "%s.dot", name_file);

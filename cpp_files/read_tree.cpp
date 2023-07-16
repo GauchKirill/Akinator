@@ -9,13 +9,12 @@
 
 tree* get_tree(const char* name_tree_file)
 {
-    
     if (!name_tree_file)
     {
         char name_file[MAX_LENGHT_NAME_FILE] = "";
         printf ("\nВведите название файла с деревом или \"-\", если хотите продолжить с пустым деревом\n");
-        scanf("%s", name_file);
-        getchar();
+        fgets(name_file, MAX_LENGHT_NAME_FILE, stdin);
+        name_file[strlen(name_file) - 1] = '\0';
 
         if (strncmp(name_file, "-", MAX_LENGHT_NAME_FILE) == 0)
         {
@@ -29,6 +28,7 @@ tree* get_tree(const char* name_tree_file)
 
         } else
             return tree_from_file(name_file);
+            
     }
     else
         return tree_from_file(name_tree_file);

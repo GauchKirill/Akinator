@@ -25,6 +25,7 @@ int get_modes_num(void)
         printf("\nОтветом должно быть целое число от 0 до %u\n", (unsigned) CNT_MODES - 1);
         while(scanf("%d", &modes_num) != 1)
             scanf("%*s");
+        getchar();
 
         switch (modes_num)
         {
