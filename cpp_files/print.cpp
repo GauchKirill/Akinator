@@ -53,9 +53,10 @@ int get_answer(void)
         if (answer) free(answer);
         printf("Введите \"%s\" (да) или \"%s\" (нет)?\n", YES, NO);
         scanf("%ms", &answer);
+        getchar();
     }
-    while (         strncmp(answer, YES, MAX_LENGHT_ANSWER) != 0 &&
-           (is_no = strncmp(answer, NO,  MAX_LENGHT_ANSWER) != 0));
+    while ((is_no = strncmp(answer, NO,  MAX_LENGHT_ANSWER)) != 0 &&
+                    strncmp(answer, YES, MAX_LENGHT_ANSWER)  != 0 );
 
     free(answer);
     return is_no;
