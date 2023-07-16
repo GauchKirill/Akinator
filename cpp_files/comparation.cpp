@@ -23,14 +23,6 @@ void get_word(char* word, int num)
     StackPop (stk_of_name_ ## num,   &description_ ## num); \
     StackPop (stk_of_answer_ ## num, &answer_ ## num);
 
-#define print_difference                                        \
-    StackPush(stk_of_name_1, description_1);                    \
-    StackPush(stk_of_name_2, description_2);                    \
-    StackPush(stk_of_answer_1, answer_1);                       \
-    StackPush(stk_of_answer_2, answer_2);                       \
-    print_definition(word_1, stk_of_name_1, stk_of_answer_1);   \
-    print_definition(word_2, stk_of_name_2, stk_of_answer_2);
-
 int description_cmp(char* description_1, char* description_2, char* answer_1, char* answer_2)
 {
     if ((strncmp(description_1, description_2, MAX_LENGHT_DATA) == 0) &&
@@ -90,18 +82,19 @@ void comparation(tree* tr)
             } while (description_cmp(description_1, description_2, answer_1, answer_2) == 0);
 
             printf("однако есть и различия:\n");
-            print_difference
             
         }
         else
-        {
             printf("\n\"%s\" и \"%s\" полностью разлины.\n", word_1, word_2);
-            print_difference
-
-        }
+        
+        StackPush(stk_of_name_1, description_1);
+        StackPush(stk_of_name_2, description_2);
+        StackPush(stk_of_answer_1, answer_1);
+        StackPush(stk_of_answer_2, answer_2);
+        print_definition(word_1, stk_of_name_1, stk_of_answer_1);
+        print_definition(word_2, stk_of_name_2, stk_of_answer_2);
     }
 }
 
 #undef get_description
 #undef create_stacks
-#undef print_difference
