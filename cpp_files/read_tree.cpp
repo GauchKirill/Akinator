@@ -39,7 +39,8 @@ tree* tree_from_file(const char* name_tree_file)
     tree* tr = (tree*) calloc(1, sizeof(tree));
     if (!tr)
     {
-        printf("\nHas not memory for tree\n");
+        printf("\n"
+                "Has not memory for tree\n");
         return nullptr;
     }
 
@@ -76,14 +77,16 @@ char* get_buf(const char* name_file)
         buf = (char*) calloc(size, sizeof(char));
         if (!buf)
         {
-            printf("\nHas not memory for buf\n");
+            printf("\n"
+                    "Has not memory for buf\n");
             return nullptr;
         }
         FILE* file = fopen(name_file, "r");
         if (!file)
         {
             free(buf);
-            printf ("\nCan not open file \"%s\"\n", name_file);
+            printf ("\n"
+                    "Can not open file \"%s\"\n", name_file);
             return nullptr;
         }
 

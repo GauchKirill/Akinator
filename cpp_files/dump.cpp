@@ -9,12 +9,14 @@ void dump(const tree* tr)
 {
     if (!tr) 
     {
-        printf("\nНе валидные указатели.\n");
+        printf("\n"
+                "Не валидные указатели.\n");
         return;
     }
 
     char name_file[MAX_LENGHT_NAME_FILE] = "";
-    printf("\nВведите имя файла без расширения, куда сохранить дерево\n");
+    printf("\n"
+            "Введите имя файла без расширения, куда сохранить дерево\n");
     fgets(name_file, MAX_LENGHT_NAME_FILE, stdin);
 
     char system_instruction[MAX_LENGHT_INSTRUCTION] = "";
@@ -41,7 +43,6 @@ void dump(const tree* tr)
     sprintf(system_instruction, "dot -Tpng %s.dot -o %s.png", name_file, name_file);
     system(system_instruction);
 
-    printf("\nEND DUMP\n");
     save_tree(strncat(name_file, ".txt", 5), tr);
     
     return;

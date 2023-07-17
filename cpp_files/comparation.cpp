@@ -8,9 +8,11 @@
 void get_word(char* word, int num)
 {
     if (num == 1)
-        printf("\nВведите первое слово в сравнении.\n");
+        printf("\n"
+                "Введите первое слово в сравнении.\n");
     else
-        printf("\nВведите слово с которым сравнивать.\n");
+        printf("\n"
+                "Введите слово с которым сравнивать.\n");
 
     fgets(word, MAX_LENGHT_DATA, stdin);
     word[strlen(word) - 1] = '\0';
@@ -66,7 +68,8 @@ void comparation(tree* tr)
 
             if (description_cmp(description_1, description_2, answer_1, answer_2) == 0)
             {
-                printf("\nУ \"%s\" и у \"%s\" есть сходства:\nОни ", word_1, word_2);
+                printf("\n"
+                        "У \"%s\" и у \"%s\" есть сходства:\nОни ", word_1, word_2);
                 do
                 {
                     printf("%s\"%s\"", (strncmp(answer_1, YES, MAX_LENGHT_ANSWER) == 0) ? "" : "не ", description_1);        
@@ -87,7 +90,8 @@ void comparation(tree* tr)
                 
             }
             else
-                printf("\n\"%s\" и \"%s\" полностью разлины.\n", word_1, word_2);
+                printf("\n"
+                        "\"%s\" и \"%s\" полностью разлины.\n", word_1, word_2);
             
             StackPush(stk_of_name_1, description_1);
             StackPush(stk_of_name_2, description_2);

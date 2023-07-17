@@ -6,7 +6,8 @@
 
 int get_modes_num(void)
 {
-    printf("\nВведите номер режима:\n");
+    printf("\n"
+            "Введите номер режима:\n");
     #define define_mod(short_flag, long_flag, description, function, cnt_char, need_tree, mod_name)   \
         printf("%d - %-15s - %s\n", mod_name, long_flag + 2, description);
 
@@ -22,7 +23,8 @@ int get_modes_num(void)
 
     while (true)
     {
-        printf("\nОтветом должно быть целое число от 0 до %u\n", (unsigned) CNT_MODES - 1);
+        printf("\n"
+                "Ответом должно быть целое число от 0 до %u\n", (unsigned) CNT_MODES - 1);
         while(scanf("%d", &modes_num) != 1)
             scanf("%*s");
         getchar();
@@ -31,7 +33,8 @@ int get_modes_num(void)
         {
             #include "../settings_files/flags.h"
             default:
-                printf("\nТакого режима не существует, попробуйте ещё раз.\n");\
+                printf("\n"
+                        "Такого режима не существует, попробуйте ещё раз.\n");\
                 break;
         }
     }
@@ -56,7 +59,8 @@ void modes(int argc, const char** argv)
 
         #include "../settings_files/flags.h"
         {
-            printf("\nТакая команда не найдена.\n");
+            printf("\n"
+                    "Такая команда не найдена.\n");
             modes_num = HELP;
         }
 
@@ -83,12 +87,14 @@ void modes(int argc, const char** argv)
         {
             #include "../settings_files/flags.h"
             default:
-                printf("\nНет режима с номером %d\n", modes_num);
+                printf("\n"
+                        "Нет режима с номером %d\n", modes_num);
         }
 
         #undef define_mod
 
-        printf("\nХотите продолжить играть?\n");
+        printf("\n"
+                "Хотите продолжить играть?\n");
         if (get_answer() == 0)
             modes_num = EXIT;
         else

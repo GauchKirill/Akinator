@@ -41,7 +41,7 @@ void print_definition(elem_t name, stack* name_stk, stack* answer_stk)
         else
             printf (".");
     }
-    printf("\n");
+    printf("\n""");
 }
 
 int get_answer(void)
