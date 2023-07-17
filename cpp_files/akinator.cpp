@@ -14,7 +14,7 @@ void akinator(tree* tr)
     }
     while (true)
     {
-        ask_quation(tr, tr->root);
+        ask_question(tr, tr->root);
         printf("\nХотите продолжить играть в акинатора?\n");
         if (get_answer() == 0) break;
     }
@@ -28,16 +28,16 @@ void akinator(tree* tr)
 
 }
 
-void ask_quation(tree* tr, node* now_node)
+void ask_question(tree* tr, node* now_node)
 {
     if (left_node(now_node) && right_node(now_node))
     {
         printf("\nЭто %s?\n", node_data(now_node));
 
         if (get_answer())
-            ask_quation(tr, left_node(now_node));
+            ask_question(tr, left_node(now_node));
         else
-            ask_quation(tr, right_node(now_node));  
+            ask_question(tr, right_node(now_node));  
     } else
     {
         printf("\nНаверное это %s?\n", node_data(now_node));
