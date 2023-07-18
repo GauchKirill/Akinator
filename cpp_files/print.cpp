@@ -51,7 +51,7 @@ int get_answer(void)
     do
     {
         if (answer) free(answer);
-        sprintf(cmd_text, "Введите \"%s\" (да) или \"%s\" (нет)?", YES, NO);
+        sprintf(cmd_text, "Введите \"%s\" (да) или \"%s\" (нет).", YES, NO);
         reproduce_text(cmd_text, "russian");
         scanf("%ms", &answer);
         getchar();
