@@ -28,14 +28,16 @@ node* make_node (elem_t data_of_node, node* left_ptr, node* right_ptr)
     node* new_node  = (node*) calloc(1, sizeof(node));
     if (!new_node)
     {
-        printf("Has not memory for node\n");
+        printf("\n"
+                "Has not memory for node\n");
         return nullptr;
     }
 
     node_data(new_node) = make_data(data_of_node);
     if (!node_data(new_node))
     {
-        printf("Has not memory for \"");
+        printf("\n"
+                "Has not memory for \"");
         printf(elem_out, data_of_node);
         printf("\"\n");
         return nullptr;

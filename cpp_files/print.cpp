@@ -51,7 +51,8 @@ int get_answer(void)
     do
     {
         if (answer) free(answer);
-        printf("Введите \"%s\" (да) или \"%s\" (нет)?\n", YES, NO);
+        sprintf(cmd_text, "Введите \"%s\" (да) или \"%s\" (нет)?", YES, NO);
+        reproduce_text(cmd_text, "russian");
         scanf("%ms", &answer);
         getchar();
     }
@@ -68,6 +69,17 @@ int get_answer(void)
 void printf_help(void)
 {
     #include "../settings_files/flags.h"
+}
+
+void reproduce_text(const char* text, const char* language)
+{
+    char cmd[MAX_LENGHT_INSTRUCTION] = "";
+    printf("\n"
+            "%s\n", text);
+    sprintf(cmd, "echo \"%s\" | festival --tts --language %s",
+            text, language);
+    system(cmd);
+    return;
 }
 
 #undef define_mod

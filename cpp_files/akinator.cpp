@@ -4,26 +4,24 @@
 #include "../h_files/print.h"
 #include "../settings_files/akinator_settings.h"
 #include <string.h>
+#include <stdlib.h>
 
 void akinator(tree* tr)
 {
     if (!tr || !tr->root)
     {
-        printf("\n"
-                "Невалидные указатели\n");
+        reproduce_text("Невалидные указатели.", "russian");
         return;
     }
     while (true)
     {
         ask_question(tr, tr->root);
-        printf("\n"
-                "Хотите продолжить играть в акинатора?\n");
+        reproduce_text("Хотите продолжить играть в акинатора?", "russian");
         if (get_answer() == 0) break;
     }
 
-    printf("\n"
-            "Хотите сохранить получившееся дерево?\n");
-    
+    reproduce_text("Хотите сохранить получившееся дерево?", "russian");
+
     if (get_answer())
         dump(tr);
     else
@@ -35,8 +33,8 @@ void ask_question(tree* tr, node* now_node)
 {
     if (left_node(now_node) && right_node(now_node))
     {
-        printf("\n"
-                "Это %s?\n", node_data(now_node));
+        sprintf(cmd_text, "Это %s?", node_data(now_node));
+        reproduce_text(cmd_text, "russian");
 
         if (get_answer())
             ask_question(tr, left_node(now_node));
@@ -44,11 +42,11 @@ void ask_question(tree* tr, node* now_node)
             ask_question(tr, right_node(now_node));  
     } else
     {
-        printf("\n"
-                "Наверное это %s?\n", node_data(now_node));
+        sprintf(cmd_text, "Наверное это %s?", node_data(now_node));
+        reproduce_text(cmd_text, "russian");
 
         if (get_answer())
-            printf ("\nЯ угадал, я молодец!\n");
+            reproduce_text("Я угадал, я молодец!", "russian");
         else
             new_object(tr, now_node);
     }
@@ -56,8 +54,8 @@ void ask_question(tree* tr, node* now_node)
 
 void new_object(tree* tr, node*     old_node)
 {
-    printf("\n"
-            "Кто/что это был(a/о)?\n");
+    reproduce_text("Кто или что это было?", "russian");
+
     char name[MAX_LENGHT_DATA] = "";
     getchar();
     fgets(name, MAX_LENGHT_DATA, stdin);
@@ -67,14 +65,15 @@ void new_object(tree* tr, node*     old_node)
 
     if (find_def(tr->root, &stk_of_name, &stk_of_answer, name) == INSIDE_TREE)
     {
-        printf("\n"
-                "Это слово уже есть в дереве\n");
+        reproduce_text("Это слово уже есть в дереве.", "russian");
+
         print_definition(name, stk_of_name, stk_of_answer);
         return;
     }
 
-    printf("\n"
-            "Чем \"%s\" отличается от \"%s\"?\n Он(а/о) ...\n", name, node_data(old_node));
+    sprintf(cmd_text, "Чем \"%s\" отличается от \"%s\"?\n Оно ...", name, node_data(old_node));
+    reproduce_text(cmd_text, "russian");
+    
     char difference[MAX_LENGHT_DATA] = "";
     fgets(difference, MAX_LENGHT_DATA, stdin);
     difference[strlen(difference) - 1] = '\0';

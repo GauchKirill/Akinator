@@ -1,5 +1,6 @@
 #include "../h_files/read_tree.h"
 #include "../settings_files/akinator_settings.h"
+#include "../h_files/print.h"
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -12,7 +13,8 @@ tree* get_tree(const char* name_tree_file)
     if (!name_tree_file)
     {
         char name_file[MAX_LENGHT_NAME_FILE] = "";
-        printf ("\nВведите название файла с деревом или \"-\", если хотите продолжить с пустым деревом\n");
+        reproduce_text("Введите название файла с деревом или \"-\", если хотите продолжить с пустым деревом", "russian");
+
         fgets(name_file, MAX_LENGHT_NAME_FILE, stdin);
         name_file[strlen(name_file) - 1] = '\0';
 
@@ -21,7 +23,7 @@ tree* get_tree(const char* name_tree_file)
             tree* tr = TreeCtor(tr);
             if (!tr)
             {
-                printf ("\nHas not memory for tree\n");
+                reproduce_text("Has not memory for tree.", "english");
                 return nullptr;
             }
             return tr;
@@ -39,8 +41,7 @@ tree* tree_from_file(const char* name_tree_file)
     tree* tr = (tree*) calloc(1, sizeof(tree));
     if (!tr)
     {
-        printf("\n"
-                "Has not memory for tree\n");
+        reproduce_text("Has not memory for tree.", "english");
         return nullptr;
     }
 
@@ -68,7 +69,8 @@ char* get_buf(const char* name_file)
     
     if (stat(name_file, &stbuf) == -1)
     {
-        printf ("\nCan not open file \"%s\"\n", name_file);
+        sprintf(cmd_text, "Can not open file \"%s\"\n", name_file);
+        reproduce_text(cmd_text, "english");
         return nullptr;
     }
     else
@@ -77,16 +79,15 @@ char* get_buf(const char* name_file)
         buf = (char*) calloc(size, sizeof(char));
         if (!buf)
         {
-            printf("\n"
-                    "Has not memory for buf\n");
+            reproduce_text("Has not memory for buf.", "english");
             return nullptr;
         }
         FILE* file = fopen(name_file, "r");
         if (!file)
         {
             free(buf);
-            printf ("\n"
-                    "Can not open file \"%s\"\n", name_file);
+            sprintf(cmd_text, "Can not open file \"%s\"\n", name_file);
+            reproduce_text(cmd_text, "endlish");
             return nullptr;
         }
 

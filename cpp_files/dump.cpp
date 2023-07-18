@@ -9,14 +9,13 @@ void dump(const tree* tr)
 {
     if (!tr) 
     {
-        printf("\n"
-                "Не валидные указатели.\n");
+        reproduce_text("Не валидные указатели.", "russian");
         return;
     }
 
     char name_file[MAX_LENGHT_NAME_FILE] = "";
-    printf("\n"
-            "Введите имя файла без расширения, куда сохранить дерево\n");
+    reproduce_text("Введите имя файла без расширения, куда сохранить дерево.", "russian");
+    
     fgets(name_file, MAX_LENGHT_NAME_FILE, stdin);
 
     char system_instruction[MAX_LENGHT_INSTRUCTION] = "";
@@ -24,7 +23,8 @@ void dump(const tree* tr)
     FILE* dump_file_ptr = fopen(system_instruction, "w");
     if (!dump_file_ptr)
     {
-        printf("Cann't open file %s.dot\n", name_file);
+        sprintf(cmd_text, "Cann't open file %s.dot\n", name_file);
+        reproduce_text(cmd_text, "english");
         return;
     }
 
@@ -81,7 +81,8 @@ void save_tree(const char* name_file, const tree* tr)
     FILE* tree_file = fopen(name_file, "w");
     if (!tree_file)
     {
-        printf("Cann't open file \"%s\"\n", name_file);
+        sprintf(cmd_text, "Cann't open file \"%s\"\n", name_file);
+        reproduce_text(cmd_text, "english");
         return;
     }
 

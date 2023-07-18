@@ -8,11 +8,9 @@
 void get_word(char* word, int num)
 {
     if (num == 1)
-        printf("\n"
-                "Введите первое слово в сравнении.\n");
+        reproduce_text("Введите первое слово в сравнении.", "russian");
     else
-        printf("\n"
-                "Введите слово с которым сравнивать.\n");
+        reproduce_text("Введите слово с которым сравнивать.", "russian");
 
     fgets(word, MAX_LENGHT_DATA, stdin);
     word[strlen(word) - 1] = '\0';
@@ -50,12 +48,16 @@ void comparation(tree* tr)
         create_stacks(2)
 
         if (find_def(tr->root, &stk_of_name_1, &stk_of_answer_1, word_1) == NOT_INSIDE_TREE)
-            printf ("\nСлово \"%s\" не найдено в дереве.\n", word_1);
-
+        {
+            sprintf(cmd_text, "Слово \"%s\" не найдено в дереве.", word_1);
+            reproduce_text(cmd_text, "russian");
+        }
         else
         if (find_def(tr->root, &stk_of_name_2, &stk_of_answer_2, word_2) == NOT_INSIDE_TREE)
-            printf ("\nСлово \"%s\" не найдено в дереве.\n", word_2);
-        
+        {
+            sprintf(cmd_text, "Слово \"%s\" не найдено в дереве.", word_2);
+            reproduce_text(cmd_text, "russian");
+        }    
         else
         {
             char    *description_1 = nullptr,
@@ -68,30 +70,38 @@ void comparation(tree* tr)
 
             if (description_cmp(description_1, description_2, answer_1, answer_2) == 0)
             {
-                printf("\n"
-                        "У \"%s\" и у \"%s\" есть сходства:\nОни ", word_1, word_2);
+                char description[3 * MAX_LENGHT_DATA] = ""; //word_1, word_2 + over words
+                sprintf(description, "У \"%s\" и у \"%s\" есть сходства:\nОни ", word_1, word_2);
+                strncat(cmd_text, description, MAX_LENGHT_DATA);
+
                 do
                 {
-                    printf("%s\"%s\"", (strncmp(answer_1, YES, MAX_LENGHT_ANSWER) == 0) ? "" : "не ", description_1);        
+                    sprintf(description, "%s\"%s\"", (strncmp(answer_1, YES, MAX_LENGHT_ANSWER) == 0) ? "" : "не ", description_1);
+                    strncat(cmd_text, description, MAX_LENGHT_DATA);
 
                     if (stk_of_name_1->size > 0 && stk_of_name_2->size > 0)
-                        printf(", ");
+                        strncat(cmd_text, ", ", MAX_LENGHT_DATA);
                     else
                     {
-                        printf(".\n");
+                        strncat(cmd_text, ".", MAX_LENGHT_DATA);
+                        reproduce_text(cmd_text, "russian");
                         return;
                     }
+
                     get_description(1)
                     get_description(2)
 
                 } while (description_cmp(description_1, description_2, answer_1, answer_2) == 0);
 
-                printf("однако есть и различия:\n");
+                reproduce_text("однако есть и различия:", "russian");
                 
             }
             else
-                printf("\n"
-                        "\"%s\" и \"%s\" полностью разлины.\n", word_1, word_2);
+            {
+                sprintf(cmd_text, "\"%s\" и \"%s\" полностью разлины.", word_1, word_2);
+                reproduce_text(cmd_text, "russian");
+            }
+                
             
             StackPush(stk_of_name_1, description_1);
             StackPush(stk_of_name_2, description_2);
@@ -101,8 +111,7 @@ void comparation(tree* tr)
             print_definition(word_2, stk_of_name_2, stk_of_answer_2);
         }
 
-        printf("\n"
-                "Хотите продолжить сравнивать слова?\n");
+        reproduce_text("Хотите продолжить сравнивать слова?", "russian");
 
         if(get_answer() == 0) break;
     }    

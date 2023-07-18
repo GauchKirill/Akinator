@@ -2,12 +2,13 @@
 #include "../h_files/read_tree.h"
 #include "../h_files/print.h"
 #include "../h_files/dump.h"
+#include "../settings_files/akinator_settings.h"
 #include <string.h>
 
 int get_modes_num(void)
 {
-    printf("\n"
-            "Введите номер режима:\n");
+    reproduce_text("Введите номер режима:", "russian");
+
     #define define_mod(short_flag, long_flag, description, function, cnt_char, need_tree, mod_name)   \
         printf("%d - %-15s - %s\n", mod_name, long_flag + 2, description);
 
@@ -23,8 +24,8 @@ int get_modes_num(void)
 
     while (true)
     {
-        printf("\n"
-                "Ответом должно быть целое число от 0 до %u\n", (unsigned) CNT_MODES - 1);
+        sprintf(cmd_text, "Ответом должно быть целое число от 0 до %u.", (unsigned) CNT_MODES - 1);
+        reproduce_text(cmd_text, "russian");
         while(scanf("%d", &modes_num) != 1)
             scanf("%*s");
         getchar();
@@ -33,8 +34,7 @@ int get_modes_num(void)
         {
             #include "../settings_files/flags.h"
             default:
-                printf("\n"
-                        "Такого режима не существует, попробуйте ещё раз.\n");\
+                reproduce_text("Такого режима не существует, попробуйте ещё раз.", "russian");
                 break;
         }
     }
@@ -59,8 +59,7 @@ void modes(int argc, const char** argv)
 
         #include "../settings_files/flags.h"
         {
-            printf("\n"
-                    "Такая команда не найдена.\n");
+            reproduce_text("Такая команда не найдена.", "russian");
             modes_num = HELP;
         }
 
@@ -87,14 +86,15 @@ void modes(int argc, const char** argv)
         {
             #include "../settings_files/flags.h"
             default:
-                printf("\n"
-                        "Нет режима с номером %d\n", modes_num);
+                sprintf(cmd_text, "Нет режима с номером %d.", modes_num);
+                reproduce_text(cmd_text, "russian");
+                break;
         }
 
         #undef define_mod
 
-        printf("\n"
-                "Хотите продолжить играть?\n");
+        reproduce_text("Хотите продолжить играть?", "russian");
+        
         if (get_answer() == 0)
             modes_num = EXIT;
         else

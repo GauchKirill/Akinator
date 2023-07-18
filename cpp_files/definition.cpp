@@ -8,15 +8,14 @@ void definition(tree* tr)
 {
     if (!tr || !tr->root)
     {
-        printf("\n"
-                "Невалидные указатели.\n");
+        reproduce_text("Невалидные указатели.", "russian");
         return;
     }
     while (true)
     {
         char name[MAX_LENGHT_DATA] = "";
-        printf("\n"
-                "Введите слово, которому дать определение или \"-\" для выхода:\n");
+        reproduce_text("Введите слово, которому дать определение или \"-\" для выхода:", "russian");
+
         fgets(name, MAX_LENGHT_DATA, stdin);
         name[strlen(name) - 1] = '\0';
         if (strncmp(name, "-", 2) == 0)
@@ -28,13 +27,16 @@ void definition(tree* tr)
         {
             print_definition(name, name_stk, answer_stk);
 
-            printf("\n"
-                    "Хотите продолжить искать определения?\n");
+            reproduce_text("Хотите продолжить искать определения?", "russian");
+
             if (get_answer() == 0) break;
             getchar();  
         } else
-            printf("\n"
-                    "Слово \"%s\" не найдено в дереве.\n", name);
+        {
+            sprintf(cmd_text, "Слово \"%s\" не найдено в дереве.", name);
+            reproduce_text(cmd_text, "russian");
+        }
+            
     }
 }
 
