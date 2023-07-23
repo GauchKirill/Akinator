@@ -1,7 +1,7 @@
 #include "../h_files/comparation.h"
 #include "../h_files/print.h"
 #include "../h_files/definition.h"
-#include "../Stack/Stack.h"
+#include "../stack/stack.h"
 #include "../settings_files/akinator_settings.h"
 #include <string.h>
 
