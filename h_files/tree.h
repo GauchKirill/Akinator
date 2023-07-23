@@ -2,7 +2,7 @@
 #define TREE_H
 
 #include <stdint.h>
-#include <stddef.h>  // stddef.h
+#include <stddef.h>
 
 #include "../settings_files/elem_settings.h"
 

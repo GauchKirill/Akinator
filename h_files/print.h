@@ -2,7 +2,7 @@
 #define PRINT_H
 
 #include "tree.h"
-#include "../Stack/Stack.h"
+#include "../stack/stack.h"
 #include <stdio.h>
 
 #define print_tabs(num_tab)                                         \
