@@ -173,6 +173,8 @@ unsigned StackDtor( stack* stk)
             stk->hash      = POISON_HASH;
 
         #endif
+
+        free(stk);
     }
 
     return err;

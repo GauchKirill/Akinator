@@ -36,7 +36,9 @@ void definition(tree* tr)
             sprintf(cmd_text, "Слово \"%s\" не найдено в дереве.", name);
             reproduce_text(cmd_text, "russian");
         }
-            
+        StackDtor(answer_stk);
+        StackDtor(name_stk);
+           
     }
 }
 

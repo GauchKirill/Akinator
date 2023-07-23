@@ -7,9 +7,8 @@
 
 tree* tree_ctor(const char* name_of_tree, const char* name_of_func, const char* name_of_file, size_t num_str)
 {
-    tree* tr   = (tree*) calloc(1, sizeof(tree));
-    char* start_word = (char*) calloc(1, sizeof(char));
-    node* start_root = make_node(start_word, nullptr, nullptr); 
+    tree*   tr                  = (tree*) calloc(1, sizeof(tree));
+    node*   start_root          = make_node(nullptr, nullptr, nullptr); 
     
     if (!tr || !start_root)
         return nullptr;
@@ -72,16 +71,16 @@ void node_dtor(node* now_node)
     if (!now_node)
         return;
     if (now_node->is_visited)
-    {
-        free(now_node);
         return;
-    }
     else
     {
         now_node->is_visited = true;
         node_dtor(left_node(now_node));
         node_dtor(right_node(now_node));
-        free(now_node);    
+        if(node_data(now_node))
+            free(node_data(now_node));
+        free(now_node);
+        return;  
     }
 }
 

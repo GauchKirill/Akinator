@@ -19,6 +19,10 @@ void get_word(char* word, int num)
     stack* stk_of_answer_ ## num = nullptr;             \
     stack* stk_of_name_ ## num   = nullptr;  
 
+#define clear_stacks(num)                               \
+    StackDtor(stk_of_answer_ ## num);                   \
+    StackDtor(stk_of_name_ ## num);
+
 #define get_description(num)                                \
     StackPop (stk_of_name_ ## num,   &description_ ## num); \
     StackPop (stk_of_answer_ ## num, &answer_ ## num);
@@ -73,6 +77,7 @@ void comparation(tree* tr)
                 char description[3 * MAX_LENGHT_DATA] = ""; //word_1, word_2 + over words
                 sprintf(description, "У \"%s\" и у \"%s\" есть сходства:\nОни ", word_1, word_2);
                 strncat(cmd_text, description, MAX_LENGHT_DATA);
+                unsigned end_flag = 0;
 
                 do
                 {
@@ -85,15 +90,20 @@ void comparation(tree* tr)
                     {
                         strncat(cmd_text, ".", MAX_LENGHT_DATA);
                         reproduce_text(cmd_text, "russian");
-                        return;
+                        end_flag = 1;
                     }
 
-                    get_description(1)
-                    get_description(2)
+                    if (!end_flag)
+                    {
+                        get_description(1)
+                        get_description(2)
+                    }
+                    
 
                 } while (description_cmp(description_1, description_2, answer_1, answer_2) == 0);
 
-                reproduce_text("однако есть и различия:", "russian");
+                if(!end_flag)
+                    reproduce_text("однако есть и различия:", "russian");
                 
             }
             else
@@ -113,9 +123,13 @@ void comparation(tree* tr)
 
         reproduce_text("Хотите продолжить сравнивать слова?", "russian");
 
+        clear_stacks(1)
+        clear_stacks(2)
+
         if(get_answer() == 0) break;
     }    
 }
 
 #undef get_description
 #undef create_stacks
+#undef clear_stacks

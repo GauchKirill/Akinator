@@ -24,10 +24,11 @@ void print_node_to_file(const node* now_node, size_t num_layer, FILE* tree_file)
 
 void print_definition(elem_t name, stack* name_stk, stack* answer_stk)
 {
+    char description[MAX_LENGHT_DATA] = "";
     if (name_stk->size == 0)
         return;
     
-    printf("\"%s\" это", name);
+    sprintf(cmd_text, "\"%s\" это", name);
 
     while(name_stk->size > 0)
     {
@@ -35,13 +36,15 @@ void print_definition(elem_t name, stack* name_stk, stack* answer_stk)
         char* answer     = nullptr; 
         StackPop (name_stk,   &definition);
         StackPop (answer_stk, &answer);
-        printf(" %s\"%s\"", (strncmp(answer, YES, MAX_LENGHT_ANSWER) == 0) ? "" : "не ", definition);
+        sprintf(description, " %s\"%s\"", (strncmp(answer, YES, MAX_LENGHT_ANSWER) == 0) ? "" : "не ", definition);
+        strncat(cmd_text, description, MAX_LENGHT_CMD - strlen(cmd_text));
         if (name_stk->size > 0)
-            printf (",");
+            strcat(cmd_text, ",");
         else
-            printf (".");
+            strcat(cmd_text, ".");
     }
-    printf("\n""");
+    strcat(cmd_text, "\n");
+    reproduce_text(cmd_text, "russian");
 }
 
 int get_answer(void)
